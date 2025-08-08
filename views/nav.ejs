@@ -1,0 +1,17 @@
+<nav>
+    <a href="/" <%= activeSection === 'home' ? 'class="active"' : '' %>>Home</a>
+    <a href="/projects" <%= activeSection === 'projects' ? 'class="active"' : '' %>>Projects</a>
+    <a href="/skills" <%= activeSection === 'skills' ? 'class="active"' : '' %>>Skills</a>
+    <a href="/about" <%= activeSection === 'about' ? 'class="active"' : '' %>>About</a>
+    <a href="/contact" <%= activeSection === 'contact' ? 'class="active"' : '' %>>Contact</a>
+    <div class="dropdown">
+        <a href="#" class="dropbtn <%= activeSection.includes('roles') ? 'active' : '' %>">Roles</a>
+        <div class="dropdown-content">
+            <a href="/roles/siak-cars" <%= activeSection === 'siak-cars' ? 'class="active"' : '' %>>Sales & Business Analytics Specialist at SIAK Cars</a>
+<a href="/roles/ukhsa" <%= activeSection === 'ukhsa' ? 'class="active"' : '' %>>Senior Scientist and Lab Skills Assessor at UKHSA</a>
+<a href="/roles/intuit" <%= activeSection === 'intuit' ? 'class="active"' : '' %>>Software Engineer at Intuit</a>
+<a href="/roles/optima-health" <%= activeSection === 'optima-health' ? 'class="active"' : '' %>>Occupational Health Technician at Optima Health</a>
+<a href="/roles/minor-weir-willis" <%= activeSection === 'minor-weir-willis' ? 'class="active"' : '' %>>QA/QC Officer at Minor Weir Willis</a>
+        </div>
+    </div>
+</nav>

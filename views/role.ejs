@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kambez Saidi - <%= roleName %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1>Kambez Saidi</h1>
+        <p><%= roleName %></p>
+        <%- include('nav') %>
+    </header>
+<div class="role-container">
+    <section>
+        <h2>Job Description</h2>
+        <ul>
+            <% jobDescriptions.forEach(desc => { %>
+                <li><%= desc %></li>
+            <% }); %>
+        </ul>
+
+        <h2>Skills Acquired</h2>
+        <ul>
+            <% skillsAcquired.forEach(skill => { %>
+                <li><%= skill %></li>
+            <% }); %>
+        </ul>
+    </section>
+</div>
+    <footer>
+        <p>&copy; 2025 Kambez Saidi. <a href="https://github.com/yourusername">GitHub</a> | <a href="https://www.linkedin.com/in/kambez-saidi">LinkedIn</a></p>
+    </footer>
+</body>
+</html>
