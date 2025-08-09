@@ -13,7 +13,7 @@ const url = require('url');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'EJS');
+app.use('view engine', 'EJS');
 
 // Database connection with pooling
 let dbConfig = {
@@ -24,7 +24,8 @@ let dbConfig = {
   port: process.env.MYSQL_PORT || 3306,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
+  ssl: process.env.DB_SSL ? { rejectUnauthorized: true } : null
 };
 
 if (process.env.JAWSDB_URL) {
@@ -37,7 +38,8 @@ if (process.env.JAWSDB_URL) {
     port: dbUrl.port,
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+    ssl: { rejectUnauthorized: true }
   };
 } else if (process.env.CLEARDB_DATABASE_URL) {
   const dbUrl = new URL(process.env.CLEARDB_DATABASE_URL);
@@ -49,19 +51,21 @@ if (process.env.JAWSDB_URL) {
     port: dbUrl.port,
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+    ssl: { rejectUnauthorized: true }
   };
 }
 
 const db = mysql.createPool(dbConfig);
 
+// Verify DB connection
 db.getConnection((err, connection) => {
   if (err) {
     console.error('Error connecting to MySQL:', err.message);
-    return;
+  } else {
+    console.log('Connected to MySQL');
+    connection.release();
   }
-  console.log('Connected to MySQL');
-  connection.release();
 });
 
 // Promisify for async/await
@@ -80,20 +84,32 @@ const transporter = nodemailer.createTransport({
 app.get('/', async (req, res) => {
   try {
     const [results] = await dbPromise.query('SELECT * FROM projects');
-    res.render('index', { projects: results, activeSection: 'home' });
+    res.render('index', { 
+      projects: results || [], 
+      activeSection: 'home' 
+    });
   } catch (err) {
     console.error('Error fetching projects:', err.message);
-    res.status(500).send('Error loading projects');
+    res.render('index', { 
+      projects: [], 
+      activeSection: 'home' 
+    });
   }
 });
 
 app.get('/projects', async (req, res) => {
   try {
     const [results] = await dbPromise.query('SELECT * FROM projects');
-    res.render('projects', { projects: results, activeSection: 'projects' });
+    res.render('projects', { 
+      projects: results || [], 
+      activeSection: 'projects' 
+    });
   } catch (err) {
     console.error('Error fetching projects:', err.message);
-    res.status(500).send('Error loading projects');
+    res.render('projects', { 
+      projects: [], 
+      activeSection: 'projects' 
+    });
   }
 });
 
@@ -138,17 +154,23 @@ app.post('/contact', [
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    if (req.accepts('json')) {
-      return res.status(400).json({ success: false, message: 'Please fill all fields correctly' });
-    }
-    return res.status(400).send('Please fill all fields correctly');
+    return res.status(400).json({ 
+      success: false, 
+      message: 'Please fill all fields correctly',
+      errors: errors.array() 
+    });
   }
 
   const { name, email, message } = req.body;
 
   try {
     // Save to database
-    await dbPromise.query('INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)', [name, email, message]);
+    if (dbPromise) {
+      await dbPromise.query(
+        'INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)', 
+        [name, email, message]
+      );
+    }
 
     // Send email
     await transporter.sendMail({
@@ -162,16 +184,16 @@ app.post('/contact', [
              <p>${message.replace(/\n/g, '<br>')}</p>`
     });
 
-    if (req.accepts('json')) {
-      return res.json({ success: true, message: 'Message sent successfully!' });
-    }
-    res.send('Message received. Thank you!');
+    res.json({ 
+      success: true, 
+      message: 'Message sent successfully!' 
+    });
   } catch (err) {
     console.error('Error:', err);
-    if (req.accepts('json')) {
-      return res.status(500).json({ success: false, message: 'Error sending message' });
-    }
-    res.status(500).send('Error sending message');
+    res.status(500).json({ 
+      success: false, 
+      message: 'Error sending message' 
+    });
   }
 });
 
@@ -180,8 +202,11 @@ app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).send('Page not found');
+  res.status(404).render('404', { activeSection: '' });
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Database host: ${dbConfig.host}`);
+});
