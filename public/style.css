@@ -122,117 +122,6 @@ nav {
     gap: 1rem;
     padding: 1rem 0;
     background-color: #34495e;
-}
-
-nav a, .dropbtn {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-nav a:hover, .dropbtn:hover, nav a.active, .dropbtn.active {
-    color: #3498db;
-    text-decoration: underline;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #2c3e50;
-    min-width: 200px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    border-radius: 4px;
-    animation: fadeIn 0.3s ease-in;
-}
-
-.dropdown-content a {
-    color: white;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-content a:hover {
-    background-color: #34495e;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    .profile-img {
-        width: 150px;
-        height: 150px;
-    }
-    h1 {
-        font-size: 2rem;
-    }
-    .profile-desc {
-        font-size: 1rem;
-    }
-    #profile {
-        padding: 2rem 1rem;
-    }
-    .profile-content {
-        padding: 1.5rem;
-    }
-    h2 {
-        font-size: 2rem;
-    }
-    .highlight {
-        font-size: 1.5rem;
-    }
-    p {
-        font-size: 1rem;
-    }
-    .passion {
-        font-size: 1.1rem;
-    }
-    nav {
-        flex-direction: column;
-        align-items: center;
-    }
-    .dropdown-content {
-        position: static;
-        width: 100%;
-        box-shadow: none;
-    }
-    nav a, .dropbtn {
-        display: block;
-        margin: 0.5rem 0;
-        text-align: center;
-    }
-}
-
-/* Navigation and Dropdown Styling */
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem 0;
-    background-color: #34495e;
     margin-bottom: 1rem;
 }
 
@@ -294,53 +183,160 @@ nav a:hover, .dropbtn:hover, nav a.active, .dropbtn.active {
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    .header-content {
-        flex-direction: column;
-        text-align: center;
+    /* CHANGED: Keep nav items side by side with wrapping */
+    nav {
+        flex-direction: row; /* Changed from column to row */
+        flex-wrap: wrap; /* Allow items to wrap if needed */
+        justify-content: center; /* Center items */
+        gap: 0.5rem; /* Reduced gap for tighter spacing on mobile */
     }
+
+    nav a, .dropbtn {
+        /* CHANGED: Adjusted padding and margin for compact display */
+        padding: 0.5rem 0.8rem; /* Slightly smaller padding */
+        margin: 0.3rem 0; /* Minimal margin */
+        font-size: 0.9rem; /* Slightly smaller font for mobile */
+    }
+
+    /* CHANGED: Dropdown content adjusted for mobile */
+    .dropdown-content {
+        position: absolute; /* Keep absolute for dropdown behavior */
+        width: 150px; /* Smaller width for mobile */
+        min-width: 0; /* Override min-width to fit content */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Lighter shadow */
+    }
+
+    .dropdown-content a {
+        font-size: 0.9rem; /* Smaller font for dropdown items */
+        padding: 0.4rem 0.8rem; /* Adjusted padding */
+    }
+
     .profile-img {
         width: 150px;
         height: 150px;
     }
+
     h1 {
         font-size: 2rem;
     }
+
     .profile-desc {
         font-size: 1rem;
     }
+
     #profile {
         padding: 2rem 1rem;
     }
+
     .profile-content {
         padding: 1.5rem;
     }
+
     h2 {
         font-size: 2rem;
     }
+
     .highlight {
         font-size: 1.5rem;
     }
+
     p {
         font-size: 1rem;
     }
+
     .passion {
         font-size: 1.1rem;
     }
+}
+
+/* CHANGED: Consolidated and updated mobile nav styles */
+@media (max-width: 768px) {
+    /* CHANGED: Ensure nav remains side by side */
     nav {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row; /* Keep row layout */
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: center;
+        gap: 0.5rem; /* Consistent with 600px */
     }
-    .dropdown-content {
-        position: static;
-        width: 100%;
-        box-shadow: none;
-    }
+
     nav a, .dropbtn {
-        display: block;
-        margin: 0.5rem 0;
+        padding: 0.5rem 0.8rem; /* Consistent padding */
+        font-size: 0.9rem; /* Consistent font size */
+    }
+
+    .dropdown-content {
+        position: absolute; /* Keep dropdown functional */
+        width: 150px; /* Consistent with 600px */
+        min-width: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-content {
+        flex-direction: column;
         text-align: center;
     }
+
+    .header-content.reversed {
+        flex-direction: column;
+    }
+
+    .header-content.reversed .text-content {
+        max-width: 100%;
+        padding-right: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .profile-desc {
+        font-size: 1rem;
+    }
+
+    #profile {
+        padding: 2rem 1rem;
+    }
+
+    .profile-content {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .highlight {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .passion {
+        font-size: 1.1rem;
+    }
+
+    .role-header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .role-container {
+        padding: 0 1rem;
+    }
+
+    .role-section {
+        padding: 1.5rem;
+    }
 }
+
 /* Projects Page Styles */
 .projects-container {
     max-width: 1200px;
@@ -543,30 +539,6 @@ nav a:hover, .dropbtn:hover, nav a.active, .dropbtn.active {
     background: #3498db;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: row;  /* Keep items side by side */
-    flex-wrap: wrap;      /* Let them wrap if too small */
-    justify-content: center;
-  }
-
-  nav ul li {
-    margin: 0 10px;       /* Even spacing between items */
-  }
-}
-
-    .about-container,
-    .contact-container {
-        flex-direction: column;
-    }
-    
-    .project-img {
-        min-width: 100%;
-        max-height: 200px;
-    }
-}
-
 /* New styles for the improved index page */
 .cta-buttons {
     display: flex;
@@ -616,30 +588,19 @@ nav a:hover, .dropbtn:hover, nav a.active, .dropbtn.active {
 .social-links a:hover {
     text-decoration: underline;
 }
+
 /* Header layout adjustment */
 .header-content.reversed {
-    flex-direction: row-reverse;  /* This reverses the order */
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
 }
 
-/* Ensure text content takes appropriate space */
 .header-content.reversed .text-content {
-    max-width: 60%;  /* Adjust as needed */
-    padding-right: 2rem;  /* Space between text and image */
+    max-width: 60%;
+    padding-right: 2rem;
 }
 
-/* Responsive adjustment */
-@media (max-width: 768px) {
-    .header-content.reversed {
-        flex-direction: column;
-    }
-    .header-content.reversed .text-content {
-        max-width: 100%;
-        padding-right: 0;
-        margin-bottom: 1.5rem;
-    }
-}
 /* Role Page Specific Styles */
 .role-title {
     font-size: 1.5rem;
@@ -662,6 +623,7 @@ nav a:hover, .dropbtn:hover, nav a.active, .dropbtn.active {
     margin-bottom: 0.8rem;
     line-height: 1.6;
 }
+
 /* Role Page Container */
 .role-page {
     display: flex;
@@ -715,20 +677,4 @@ nav a:hover, .dropbtn:hover, nav a.active, .dropbtn.active {
 .role-list li {
     margin-bottom: 0.8rem;
     line-height: 1.6;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .role-header-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .role-container {
-        padding: 0 1rem;
-    }
-    
-    .role-section {
-        padding: 1.5rem;
-    }
 }
