@@ -111,6 +111,10 @@ app.get('/projects', async (req, res) => {
 app.get('/skills', (req, res) => res.render('skills', { activeSection: 'skills' }));
 app.get('/about', (req, res) => res.render('about', { activeSection: 'about' }));
 app.get('/contact', (req, res) => res.render('contact', { activeSection: 'contact' }));
+app.get('/certificates', (req, res) => {
+    res.render('certificates', { activeSection: 'certificates' });
+});
+
 
 // Role pages
 app.get('/roles/:role', (req, res) => {
