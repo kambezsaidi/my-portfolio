@@ -545,10 +545,17 @@ nav a:hover, .dropbtn:hover, nav a.active, .dropbtn.active {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .project-card {
-        flex-direction: column;
-    }
-    
+  nav ul {
+    flex-direction: row;  /* Keep items side by side */
+    flex-wrap: wrap;      /* Let them wrap if too small */
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 0 10px;       /* Even spacing between items */
+  }
+}
+
     .about-container,
     .contact-container {
         flex-direction: column;
