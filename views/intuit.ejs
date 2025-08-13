@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kambez Saidi - Software Engineer at Intuit</title>
-    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <%- include('partials/header') %>
     <header>
-                <%- include('nav') %>
-                <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">        
-                <div class="header-container">
+        <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">
+        <div class="header-container">
             <div class="header-content">
                 <div class="text-content">
                     <h1>Kambez Saidi</h1>
@@ -18,9 +19,8 @@
                     <p class="role-title">Software Engineer at Intuit</p>
                 </div>
             </div>
-            
+        </div>
     </header>
-
     <div class="role-container">
         <section>
             <h2>Job Description & Achievements</h2>
@@ -41,7 +41,6 @@
                 <li>Designed reusable React components, saving 20 hours of development time.</li>
                 <li>Showcased AI assistant, earning recognition from senior leadership.</li>
             </ul>
-
             <h2>Skills Learned</h2>
             <ul class="role-list">
                 <li>React and Next.js development</li>
@@ -61,10 +60,10 @@
                 <li>Component reusability design</li>
             </ul>
         </section>
-
     </div>
     <footer>
         <p>&copy; 2025 Kambez Saidi. <a href="https://github.com/kambezsaidi">GitHub</a> | <a href="https://www.linkedin.com/in/kambez-saidi">LinkedIn</a></p>
     </footer>
+    <script src="/js/script.js" defer></script>
 </body>
 </html>
