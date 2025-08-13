@@ -3,55 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kambez Saidi | Portfolio</title>
-    <link rel="stylesheet" href="public/style.css">
+    <title>Kambez Saidi - Experiences</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <header class="main-header">
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">Expertise ▾</a>
-                    <ul class="dropdown-content">
-                        <li><a href="/expertise/data-engineering">Data Engineering</a></li>
-                        <li><a href="/expertise/software-development">Software Development</a></li>
-                        <li><a href="/expertise/business-analysis">Business Analysis</a></li>
-                    </ul>
-                </li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/certificates">Certificates</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="profile-section">
-        <div class="profile-img">
-            <img src="/images/kambez.jpg" alt="Kambez Saidi">
-        </div>
-        <div class="profile-info">
-            <h1>Kambez Saidi</h1>
-            <h2>Data Engineer • Software Developer • Business Analyst</h2>
-            <p>
-                I am a multi-skilled technology professional passionate about turning data into actionable insights, 
-                building robust software solutions, and streamlining business processes. With expertise spanning 
-                engineering, development, and analysis, I deliver results that bridge the gap between technology and strategy.
-            </p>
-
-            <div class="circle-buttons">
-                <a href="#" class="circle-btn expertise-btn">Expertise</a>
-                <a href="/projects" class="circle-btn projects-btn">Projects</a>
-                <a href="/certificates" class="circle-btn certificates-btn">Certificates</a>
-                <a href="/contact" class="circle-btn contact-btn">Contact</a>
-            </div>
-        </div>
-    </main>
-
+    <%- include('partials/header') %>
+    <section class="content">
+        <h1>Professional Experiences</h1>
+        <ul>
+            <li>
+                <a href="/experiences/siak-cars">Sales & Business Analytics Specialist at SIAK Cars</a>
+                <p>Brief description: Analyzed sales data and built analytics dashboards.</p>
+            </li>
+            <li>
+                <a href="/experiences/ukhsa">Senior Scientist and Lab Skills Assessor</a>
+                <p>Brief description: Conducted scientific assessments and lab work.</p>
+            </li>
+            <li>
+                <a href="/experiences/intuit">Software Engineer</a>
+                <p>Brief description: Developed software solutions for financial applications.</p>
+            </li>
+            <li>
+                <a href="/experiences/minor-weir-willis">QA/QC Officer</a>
+                <p>Brief description: Ensured quality control in operations.</p>
+            </li>
+            <li>
+                <a href="/experiences/optima-health">Occupational Health Technician</a>
+                <p>Brief description: Managed health and safety protocols.</p>
+            </li>
+        </ul>
+    </section>
     <footer>
-        <p>Email: <a href="mailto:kambez@example.com">kambez@example.com</a></p>
-        <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
-        <p>© <%= new Date().getFullYear() %> Kambez Saidi</p>
+        <p>Email: kambezsaidi@outlook.com | GitHub: <a href="https://github.com/kambezsaidi">github.com/yourusername</a></p>
     </footer>
+    <script src="/js/script.js" defer></script>
 </body>
 </html>
