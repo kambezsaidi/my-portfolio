@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 // -------------------
 // 2. Environment Validation
 // -------------------
-const requiredEnv = ['JAWSDB_URL', 'EMAIL_USER', 'EMAIL_PASS'];
+const requiredEnv = ['MYSQL_HOST', 'MYSQL_USER', 'MYSQL_PASSWORD', 'MYSQL_DATABASE', 'EMAIL_USER', 'EMAIL_PASS'];
 const missingEnv = requiredEnv.filter(env => !process.env[env]);
 if (missingEnv.length > 0) {
   console.error('❌ Missing environment variables:', missingEnv);
@@ -28,38 +28,23 @@ if (missingEnv.length > 0) {
 // -------------------
 // 3. Database Connection
 // -------------------
-let dbConfig = {
-  host: process.env.MYSQL_HOST || 'localhost',
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || '',
-  database: process.env.MYSQL_DATABASE || 'portfolio_db',
+const dbConfig = {
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
   port: process.env.MYSQL_PORT || 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
 };
 
-// Override with JawsDB URL if provided
-if (process.env.JAWSDB_URL) {
-  const dbUrl = new URL(process.env.JAWSDB_URL);
-  dbConfig = {
-    host: dbUrl.hostname,
-    user: dbUrl.username,
-    password: dbUrl.password,
-    database: dbUrl.pathname.slice(1), // Extracts database name (e.g., v7x6ss6unpxwxu5u)
-    port: dbUrl.port || 3306,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-  };
-}
-
 const db = mysql.createPool(dbConfig);
 const dbPromise = db.promise();
 
 db.getConnection((err, connection) => {
   if (err) {
-    console.error('❌ Error connecting to MySQL/JawsDB:', err.stack);
+    console.error('❌ Error connecting to MySQL/RDS:', err.stack);
   } else {
     // Create tables if they don't exist
     connection.query(`
@@ -99,7 +84,7 @@ db.getConnection((err, connection) => {
       else console.log('✅ Certificates table checked/created');
     });
 
-    console.log('✅ Connected to MySQL/JawsDB');
+    console.log('✅ Connected to MySQL/RDS');
     connection.release();
   }
 });
@@ -223,5 +208,5 @@ app.use((req, res) => res.status(404).render('404', { activeSection: '' }));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT} at ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })}`);
-  console.log(`Database host: ${dbConfig.host}`);
+  console.log(`Database host: ${dbConfig.host}, Database: ${dbConfig.database}`);
 });
