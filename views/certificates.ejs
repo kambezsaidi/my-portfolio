@@ -18,3 +18,45 @@ function closeModal() {
     document.getElementById("imageModal").style.display = "none";
 }
 </script>
+
+<div class="certificate">
+    <h3>Data Analysis Certificate</h3>
+    <img src="/images/certificates/data-engineering.jpg" alt="Data Enginerring Certificate" class="thumb" onclick="openModal(this)">
+</div>
+
+<!-- Modal -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+function openModal(img) {
+    document.getElementById("modalImage").src = img.src;
+    document.getElementById("imageModal").style.display = "block";
+}
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+}
+</script>
+
+<div class="certificate">
+    <h3>Data Analysis Certificate</h3>
+    <img src="/images/certificates/software-developer.jpg" alt="Software Developer Certificate" class="thumb" onclick="openModal(this)">
+</div>
+
+<!-- Modal -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+function openModal(img) {
+    document.getElementById("modalImage").src = img.src;
+    document.getElementById("imageModal").style.display = "block";
+}
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+}
+</script>
