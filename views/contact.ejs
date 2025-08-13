@@ -1,50 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Kambez Saidi</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-    <header>
-        <%- include('nav') %>
+<%- include('partials/header', { title: 'Kambez Saidi - Contact' }) %>
+
+<main class="container">
+    <section class="content">
         <h1>Get In Touch</h1>
-        <p class="profile-desc">I'd love to hear about your projects or opportunities</p>
-    </header>
-
-    <section id="contact">
-        <div class="contact-container">
-            <div class="contact-info">
-                <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">
-                <div class="details">
-                    <p><strong>Email:</strong> kambez.saidi@outlook.com</p>
-                </div>
+        
+        <form id="contact-form" action="/contact" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
             </div>
-
-            <form action="/contact" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+        
+        <div class="contact-info">
+            <p>Email: <a href="mailto:kambez.saidi@outlook.com">kambez.saidi@outlook.com</a></p>
+            <p>GitHub: <a href="https://github.com/kambezsaidi" target="_blank">github.com/kambezsaidi</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/kambez-saidi" target="_blank">linkedin.com/in/kambez-saidi</a></p>
         </div>
     </section>
+</main>
 
-    <footer>
-        <p>&copy; 2025 Kambez Saidi. <a href="https://github.com/kambezsaidi">GitHub</a> | <a href="https://www.linkedin.com/in/kambez-saidi">LinkedIn</a></p>
-    </footer>
-</body>
-</html>
+<%- include('partials/footer') %>

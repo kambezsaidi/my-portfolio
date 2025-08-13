@@ -1,6 +1,55 @@
-<%- include('nav') %>
+<%- include('partials/header', { title: 'Kambez Saidi - Expertise' }) %>
 
-<h1>My Experiences</h1>
-<p>This page will showcase my work history, projects, and roles.</p>
+<main class="container">
+    <section class="content">
+        <h1>My Expertise Areas</h1>
+        
+        <div class="card-grid">
+            <div class="card">
+                <h2><a href="/expertise/data-engineer">Data Engineer</a></h2>
+                <p>Building robust data pipelines and infrastructure with Python, SQL, and PowerBI.</p>
+                <div class="skills">
+                    <span>Python</span>
+                    <span>SQL</span>
+                    <span>ETL</span>
+                    <span>PowerBI</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><a href="/expertise/data-analyst">Data Analyst</a></h2>
+                <p>Extracting insights from complex datasets to drive business decisions.</p>
+                <div class="skills">
+                    <span>SQL</span>
+                    <span>Excel</span>
+                    <span>Statistics</span>
+                    <span>Visualization</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><a href="/expertise/data-scientist">Data Scientist</a></h2>
+                <p>Applying machine learning models for predictive analytics.</p>
+                <div class="skills">
+                    <span>Python</span>
+                    <span>Machine Learning</span>
+                    <span>Pandas</span>
+                    <span>Scikit-learn</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><a href="/expertise/software-developer">Software Developer</a></h2>
+                <p>Building full-stack applications with modern technologies.</p>
+                <div class="skills">
+                    <span>JavaScript</span>
+                    <span>Node.js</span>
+                    <span>React</span>
+                    <span>Git</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
-<%- include('footer') %>
+<%- include('partials/footer') %>
