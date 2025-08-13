@@ -2,168 +2,20 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #0f172a; /* Your background color */
-    color: #fff;
 }
-
-.main-header {
-    background-color: #1e293b;
-    padding: 15px 0;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    position: relative;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    color: #38bdf8;
-}
-
-/* Dropdown Menu */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #1e293b;
-    top: 30px;
-    list-style: none;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.dropdown-content li {
-    padding: 5px 10px;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.dropdown-content li a:hover {
-    color: #38bdf8;
-}
-
-/* Profile Section */
-.profile-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 50px;
-    gap: 50px;
-}
-
-.profile-img img {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    border: 5px solid #38bdf8;
-    object-fit: cover;
-}
-
-.profile-info {
-    max-width: 600px;
-}
-
-.profile-info h1 {
-    font-size: 2.5rem;
-    margin: 0;
-}
-
-.profile-info h2 {
-    font-size: 1.2rem;
-    font-weight: normal;
-    color: #38bdf8;
-}
-
-.profile-info p {
-    margin: 20px 0;
-}
-
-/* Circle Buttons */
-.circle-buttons {
-    display: flex;
-    gap: 15px;
-}
-
-.circle-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    transition: transform 0.3s;
-}
-
-.circle-btn:hover {
-    transform: scale(1.1);
-}
-
-.expertise-btn { background-color: #f97316; }
-.projects-btn { background-color: #3b82f6; }
-.certificates-btn { background-color: #22c55e; }
-.contact-btn { background-color: #eab308; }
-
-footer {
+header {
     text-align: center;
     padding: 20px;
-    background-color: #1e293b;
-    margin-top: 30px;
 }
-.thumb {
-    width: 200px;
-    height: auto;
-    cursor: pointer;
-    border: 2px solid #38bdf8;
-    border-radius: 5px;
+.profile-img {
+    width: 150px;
+    border-radius: 50%;
 }
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    padding-top: 50px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9);
+.content {
+    padding: 20px;
 }
-
-.modal-content {
-    margin: auto;
-    display: block;
-    max-width: 90%;
-    max-height: 90%;
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 30px;
-    color: #fff;
-    font-size: 40px;
-    cursor: pointer;
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f4f4f4;
 }

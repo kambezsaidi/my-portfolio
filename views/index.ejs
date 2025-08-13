@@ -3,40 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kambez Saidi - Experiences</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Kambez Saidi - Home</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <%- include('partials/header') %>
+    <%- include('nav') %> <!-- Revert to 'nav' if that was your original include; otherwise use 'partials/header' -->
+    <header>
+        <h1>Kambez Saidi</h1>
+        <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">
+        <p class="profile-desc">A confident, versatile, and fast-learning professional with a disciplined approach, specializing in data science, software engineering, and scientific research across diverse industries.</p>
+    </header>
     <section class="content">
         <h1>Professional Experiences</h1>
         <ul>
-            <li>
-                <a href="/experiences/siak-cars">Sales & Business Analytics Specialist at SIAK Cars</a>
-                <p>Brief description: Analyzed sales data and built analytics dashboards.</p>
-            </li>
-            <li>
-                <a href="/experiences/ukhsa">Senior Scientist and Lab Skills Assessor</a>
-                <p>Brief description: Conducted scientific assessments and lab work.</p>
-            </li>
-            <li>
-                <a href="/experiences/intuit">Software Engineer</a>
-                <p>Brief description: Developed software solutions for financial applications.</p>
-            </li>
-            <li>
-                <a href="/experiences/minor-weir-willis">QA/QC Officer</a>
-                <p>Brief description: Ensured quality control in operations.</p>
-            </li>
-            <li>
-                <a href="/experiences/optima-health">Occupational Health Technician</a>
-                <p>Brief description: Managed health and safety protocols.</p>
-            </li>
+            <% projects.forEach(project => { %>
+                <li><%= project.title %> - <%= project.description %></li>
+            <% }) %>
         </ul>
     </section>
     <footer>
-        <p>Email: kambezsaidi@outlook.com | GitHub: <a href="https://github.com/kambezsaidi">github.com/yourusername</a></p>
+        <p>&copy; 2025 Kambez Saidi. <a href="https://github.com/yourusername">GitHub</a> | <a href="https://www.linkedin.com/in/kambez-saidi">LinkedIn</a></p>
     </footer>
-    <script src="/js/script.js" defer></script>
 </body>
 </html>
