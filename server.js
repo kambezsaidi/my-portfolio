@@ -16,7 +16,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 // -------------------
-// 2. Database Connection
+// 2. Environment Validation
+// -------------------
+const requiredEnv = ['MYSQL_HOST', 'MYSQL_USER', 'MYSQL_PASSWORD', 'MYSQL_DATABASE', 'EMAIL_USER', 'EMAIL_PASS'];
+const missingEnv = requiredEnv.filter(env => !process.env[env]);
+if (missingEnv.length > 0) {
+  console.error('❌ Missing environment variables:', missingEnv);
+  process.exit(1);
+}
+
+// -------------------
+// 3. Database Connection
 // -------------------
 let dbConfig = {
   host: process.env.MYSQL_HOST || 'localhost',
@@ -29,7 +39,7 @@ let dbConfig = {
   queueLimit: 0
 };
 
-// Heroku JawsDB or ClearDB
+// Heroku JawsDB or ClearDB (not applicable here, but kept for completeness)
 if (process.env.JAWSDB_URL) {
   const dbUrl = new URL(process.env.JAWSDB_URL);
   dbConfig = {
@@ -61,15 +71,24 @@ const dbPromise = db.promise();
 
 db.getConnection((err, connection) => {
   if (err) {
-    console.error('❌ Error connecting to MySQL:', err.message);
+    console.error('❌ Error connecting to MySQL:', err.stack);
+    // Exit or retry logic could be added here
   } else {
+    connection.query('CREATE TABLE IF NOT EXISTS projects (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), description TEXT)', (err) => {
+      if (err) console.error('❌ Error creating projects table:', err.stack);
+      else console.log('✅ Projects table checked/created');
+    });
+    connection.query('CREATE TABLE IF NOT EXISTS contacts (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), message TEXT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)', (err) => {
+      if (err) console.error('❌ Error creating contacts table:', err.stack);
+      else console.log('✅ Contacts table checked/created');
+    });
     console.log('✅ Connected to MySQL');
     connection.release();
   }
 });
 
 // -------------------
-// 3. Email Transporter
+// 4. Email Transporter
 // -------------------
 const transporter = nodemailer.createTransport({
   service: 'outlook',
@@ -78,9 +97,10 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
   }
 });
+console.log('Transporter config:', transporter.options); // Debug email setup
 
 // -------------------
-// 4. Routes
+// 5. Routes
 // -------------------
 
 // Home page
@@ -89,8 +109,8 @@ app.get('/', async (req, res) => {
     const [results] = await dbPromise.query('SELECT * FROM projects');
     res.render('index', { projects: results || [], activeSection: 'home' });
   } catch (err) {
-    console.error('Error fetching projects:', err.message);
-    res.render('index', { projects: [], activeSection: 'home' });
+    console.error('Error fetching projects:', err.stack);
+    res.status(500).render('index', { projects: [], activeSection: 'home', error: 'Failed to load projects. Please try again later.' });
   }
 });
 
@@ -100,14 +120,13 @@ app.get('/projects', async (req, res) => {
     const [results] = await dbPromise.query('SELECT * FROM projects');
     res.render('projects', { projects: results || [], activeSection: 'projects' });
   } catch (err) {
-    console.error('Error fetching projects:', err.message);
-    res.render('projects', { projects: [], activeSection: 'projects' });
+    console.error('Error fetching projects:', err.stack);
+    res.status(500).render('projects', { projects: [], activeSection: 'projects', error: 'Failed to load projects. Please try again later.' });
   }
 });
 
 // Static pages
 app.get('/about', (req, res) => res.render('about', { activeSection: 'about' }));
-app.get('/skills', (req, res) => res.render('skills', { activeSection: 'skills' }));
 app.get('/expertise', (req, res) => res.render('expertise', { activeSection: 'expertise' }));
 app.get('/experiences', (req, res) => res.render('experiences', { activeSection: 'experiences' }));
 app.get('/contact', (req, res) => res.render('contact', { activeSection: 'contact' }));
@@ -118,14 +137,19 @@ app.get('/expertise/data-engineering', (req, res) => res.render('data-engineerin
 app.get('/expertise/software-development', (req, res) => res.render('software-development', { activeSection: 'expertise' }));
 app.get('/expertise/business-analysis', (req, res) => res.render('business-analysis', { activeSection: 'expertise' }));
 
-// experiences pages
+// Experiences subpages
 app.get('/experiences/:experience', (req, res) => {
-  const experiencePage = req.params.experience; // ✅ matches the URL param
-  res.render(experiencePage, { activeSection: experiencePage });
+  const experiencePage = req.params.experience;
+  const validExperiences = ['siak-cars', 'ukhsa', 'intuit', 'minor-weir-willis', 'optima-health'];
+  if (validExperiences.includes(experiencePage)) {
+    res.render(experiencePage, { activeSection: experiencePage });
+  } else {
+    res.status(404).render('404', { activeSection: '' });
+  }
 });
 
 // -------------------
-// 5. Contact Form Submission
+// 6. Contact Form Submission
 // -------------------
 app.post(
   '/contact',
@@ -144,7 +168,6 @@ app.post(
 
     try {
       await dbPromise.query('INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)', [name, email, message]);
-
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
         to: 'kambez.saidi@outlook.com',
@@ -155,26 +178,25 @@ app.post(
                <p><strong>Message:</strong></p>
                <p>${message.replace(/\n/g, '<br>')}</p>`
       });
-
       res.json({ success: true, message: 'Message sent successfully!' });
     } catch (err) {
-      console.error('Error:', err);
+      console.error('Error in contact submission:', err.stack);
       res.status(500).json({ success: false, message: 'Error sending message' });
     }
   }
 );
 
 // -------------------
-// 6. Fallbacks
+// 7. Fallbacks
 // -------------------
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 app.use((req, res) => res.status(404).render('404', { activeSection: '' }));
 
 // -------------------
-// 7. Server Start
+// 8. Server Start
 // -------------------
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT} at ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })}`);
   console.log(`Database host: ${dbConfig.host}`);
 });
