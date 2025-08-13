@@ -13,7 +13,7 @@ const nodemailer = require('nodemailer');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'ejs'); // FIX: was app.use('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 // -------------------
 // 2. Database Connection
@@ -29,7 +29,7 @@ let dbConfig = {
   queueLimit: 0
 };
 
-// Heroku JawsDB support
+// Heroku JawsDB or ClearDB
 if (process.env.JAWSDB_URL) {
   const dbUrl = new URL(process.env.JAWSDB_URL);
   dbConfig = {
@@ -57,8 +57,8 @@ if (process.env.JAWSDB_URL) {
 }
 
 const db = mysql.createPool(dbConfig);
+const dbPromise = db.promise();
 
-// Verify DB connection
 db.getConnection((err, connection) => {
   if (err) {
     console.error('❌ Error connecting to MySQL:', err.message);
@@ -67,8 +67,6 @@ db.getConnection((err, connection) => {
     connection.release();
   }
 });
-
-const dbPromise = db.promise();
 
 // -------------------
 // 3. Email Transporter
@@ -108,18 +106,22 @@ app.get('/projects', async (req, res) => {
 });
 
 // Static pages
-app.get('/skills', (req, res) => res.render('skills', { activeSection: 'skills' }));
 app.get('/about', (req, res) => res.render('about', { activeSection: 'about' }));
+app.get('/skills', (req, res) => res.render('skills', { activeSection: 'skills' }));
+app.get('/expertise', (req, res) => res.render('expertise', { activeSection: 'expertise' }));
+app.get('/experiences', (req, res) => res.render('experiences', { activeSection: 'experiences' }));
 app.get('/contact', (req, res) => res.render('contact', { activeSection: 'contact' }));
-app.get('/certificates', (req, res) => {
-    res.render('certificates', { activeSection: 'certificates' });
-});
+app.get('/certificates', (req, res) => res.render('certificates', { activeSection: 'certificates' }));
 
+// Expertise subpages
+app.get('/expertise/data-engineering', (req, res) => res.render('data-engineering', { activeSection: 'expertise' }));
+app.get('/expertise/software-development', (req, res) => res.render('software-development', { activeSection: 'expertise' }));
+app.get('/expertise/business-analysis', (req, res) => res.render('business-analysis', { activeSection: 'expertise' }));
 
-// Role pages
-app.get('/roles/:role', (req, res) => {
-  const rolePage = req.params.role;
-  res.render(rolePage, { activeSection: rolePage });
+// experiences pages
+app.get('/experiences/:experience', (req, res) => {
+  const experiencePage = req.params.experience; // ✅ matches the URL param
+  res.render(experiencePage, { activeSection: experiencePage });
 });
 
 // -------------------

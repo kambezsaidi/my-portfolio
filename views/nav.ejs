@@ -1,18 +1,30 @@
 <nav>
-    <a href="/" <%= activeSection === 'home' ? 'class="active"' : '' %>>Home</a>
-    <a href="/projects" <%= activeSection === 'projects' ? 'class="active"' : '' %>>Projects</a>
-    <a href="/certificates" <%= activeSection === 'certificates' ? 'class="active"' : '' %>>Certificates</a>
-    <a href="/skills" <%= activeSection === 'skills' ? 'class="active"' : '' %>>Skills</a>
-    <a href="/about" <%= activeSection === 'about' ? 'class="active"' : '' %>>About</a>
-    <a href="/contact" <%= activeSection === 'contact' ? 'class="active"' : '' %>>Contact</a>
+    <a href="/" class="<%= activeSection === 'home' ? 'active' : '' %>">Home</a>
+    <a href="/projects" class="<%= activeSection === 'projects' ? 'active' : '' %>">Projects</a>
+    <a href="/certificates" class="<%= activeSection === 'certificates' ? 'active' : '' %>">Certificates</a>
+    <a href="/skills" class="<%= activeSection === 'skills' ? 'active' : '' %>">Skills</a>
+    <a href="/about" class="<%= activeSection === 'about' ? 'active' : '' %>">About</a>
+    <a href="/contact" class="<%= activeSection === 'contact' ? 'active' : '' %>">Contact</a>
+
+    <!-- Experiences Dropdown -->
     <div class="dropdown">
-        <a href="#" class="dropbtn <%= activeSection.includes('roles') ? 'active' : '' %>">Roles</a>
+        <a href="#" class="dropbtn <%= activeSection.includes('experiences') ? 'active' : '' %>">Experiences</a>
         <div class="dropdown-content">
-            <a href="/roles/siak-cars" <%= activeSection === 'siak-cars' ? 'class="active"' : '' %>>Sales & Business Analytics Specialist at SIAK Cars</a>
-<a href="/roles/ukhsa" <%= activeSection === 'ukhsa' ? 'class="active"' : '' %>>Senior Scientist and Lab Skills Assessor at UKHSA</a>
-<a href="/roles/intuit" <%= activeSection === 'intuit' ? 'class="active"' : '' %>>Software Engineer at Intuit</a>
-<a href="/roles/optima-health" <%= activeSection === 'optima-health' ? 'class="active"' : '' %>>Occupational Health Technician at Optima Health</a>
-<a href="/roles/minor-weir-willis" <%= activeSection === 'minor-weir-willis' ? 'class="active"' : '' %>>QA/QC Officer at Minor Weir Willis</a>
+            <a href="/experiences/siak-cars" class="<%= activeSection === 'siak-cars' ? 'active' : '' %>">Sales & Business Analytics Specialist</a>
+            <a href="/experiences/ukhsa" class="<%= activeSection === 'ukhsa' ? 'active' : '' %>">Senior Scientist & Lab Skills Assessor</a>
+            <a href="/experiences/intuit" class="<%= activeSection === 'intuit' ? 'active' : '' %>">Software Engineer</a>
+            <a href="/experiences/optima-health" class="<%= activeSection === 'optima-health' ? 'active' : '' %>">Occupational Health Technician</a>
+            <a href="/experiences/minor-weir-willis" class="<%= activeSection === 'minor-weir-willis' ? 'active' : '' %>">QA/QC Officer</a>
+        </div>
+    </div>
+
+    <!-- Expertise Dropdown -->
+    <div class="dropdown">
+        <a href="#" class="dropbtn <%= activeSection.includes('expertise') ? 'active' : '' %>">Expertise</a>
+        <div class="dropdown-content">
+            <a href="/expertise/data-engineering" class="<%= activeSection === 'data-engineering' ? 'active' : '' %>">Data Engineering</a>
+            <a href="/expertise/software-development" class="<%= activeSection === 'software-development' ? 'active' : '' %>">Software Development</a>
+            <a href="/expertise/business-analysis" class="<%= activeSection === 'business-analysis' ? 'active' : '' %>">Business Analysis</a>
         </div>
     </div>
 </nav>
