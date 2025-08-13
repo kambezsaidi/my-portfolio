@@ -1,28 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kambez Saidi - Home</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-    <%- include('nav') %> <!-- Revert to 'nav' if that was your original include; otherwise use 'partials/header' -->
-    <header>
-        <h1>Kambez Saidi</h1>
-        <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">
-        <p class="profile-desc">A confident, versatile, and fast-learning professional with a disciplined approach, specializing in data science, software engineering, and scientific research across diverse industries.</p>
-    </header>
-    <section class="content">
-        <h1>Professional Experiences</h1>
-        <ul>
-            <% projects.forEach(project => { %>
-                <li><%= project.title %> - <%= project.description %></li>
-            <% }) %>
-        </ul>
-    </section>
+<%- include('partials/header', { title: 'Kambez Saidi - Home' }) %>
+
+    <main class="container">
+        <section class="profile-header">
+            <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">
+            <h1>Kambez Saidi</h1>
+            <p class="profile-desc">A confident, versatile, and fast-learning professional with a disciplined approach, specializing in data science, software engineering, and scientific research across diverse industries.</p>
+            <p class="role-title">Data Engineer | Software Developer | Business Analyst</p>
+        </section>
+
+        <section class="content">
+            <h2>Recent Projects</h2>
+            <div class="gallery">
+                <a href="/images/businessSummary.jpg" target="_blank">
+                    <img src="/images/businessSummary.jpg" alt="Business Summary Dashboard">
+                    <p>Business Summary Dashboard</p>
+                </a>
+                <a href="/images/forecast-and-top-managers.jpg" target="_blank">
+                    <img src="/images/forecast-and-top-managers.jpg" alt="Forecast Analysis">
+                    <p>Forecast and Manager Analysis</p>
+                </a>
+                <a href="/images/non-contract-spend.jpg" target="_blank">
+                    <img src="/images/non-contract-spend.jpg" alt="Non-Contract Spend">
+                    <p>Non-Contract Spend Analysis</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <p>&copy; 2025 Kambez Saidi. <a href="https://github.com/yourusername">GitHub</a> | <a href="https://www.linkedin.com/in/kambez-saidi">LinkedIn</a></p>
+        <p>&copy; 2025 Kambez Saidi. <a href="https://github.com/kambezsaidi">GitHub</a> | <a href="https://www.linkedin.com/in/kambez-saidi">LinkedIn</a></p>
     </footer>
+
+    <script src="/js/script.js"></script>
 </body>
 </html>
