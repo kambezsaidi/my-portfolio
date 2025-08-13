@@ -151,4 +151,77 @@ app.get('/certificates', async (req, res) => {
   try {
     const [certificates] = await dbPromise.query('SELECT * FROM certificates');
     res.render('certificates', { certificates: certificates || [], activeSection: 'certificates' });
-  } catch (err
+  } catch (err) {
+    console.error('Error fetching certificates:', err.stack);
+    res.status(500).render('certificates', { certificates: [], activeSection: 'certificates', error: 'Failed to load certificates.' });
+  }
+});
+
+// Expertise subpages
+app.get('/expertise/data-engineering', (req, res) => res.render('data-engineering', { activeSection: 'expertise' }));
+app.get('/expertise/software-development', (req, res) => res.render('software-development', { activeSection: 'expertise' }));
+app.get('/expertise/business-analysis', (req, res) => res.render('business-analysis', { activeSection: 'expertise' }));
+
+// Experiences subpages
+app.get('/experiences/:experience', (req, res) => {
+  const experiencePage = req.params.experience;
+  const validExperiences = ['siak-cars', 'ukhsa', 'intuit', 'minor-weir-willis', 'optima-health'];
+  if (validExperiences.includes(experiencePage)) {
+    res.render(experiencePage, { activeSection: experiencePage });
+  } else {
+    res.status(404).render('404', { activeSection: '' });
+  }
+});
+
+// -------------------
+// 6. Contact Form Submission
+// -------------------
+app.post(
+  '/contact',
+  [
+    body('name').trim().notEmpty().escape(),
+    body('email').isEmail().normalizeEmail(),
+    body('message').trim().notEmpty().escape()
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ success: false, message: 'Please fill all fields correctly', errors: errors.array() });
+    }
+
+    const { name, email, message } = req.body;
+
+    try {
+      await dbPromise.query('INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)', [name, email, message]);
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: 'kambez.saidi@outlook.com',
+        subject: `New message from ${name} via your portfolio`,
+        text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+        html: `<p><strong>Name:</strong> ${name}</p>
+               <p><strong>Email:</strong> ${email}</p>
+               <p><strong>Message:</strong></p>
+               <p>${message.replace(/\n/g, '<br>')}</p>`
+      });
+      res.json({ success: true, message: 'Message sent successfully!' });
+    } catch (err) {
+      console.error('Error in contact submission:', err.stack);
+      res.status(500).json({ success: false, message: 'Error sending message' });
+    }
+  }
+);
+
+// -------------------
+// 7. Fallbacks
+// -------------------
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+app.use((req, res) => res.status(404).render('404', { activeSection: '' }));
+
+// -------------------
+// 8. Server Start
+// -------------------
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT} at ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })}`);
+  console.log(`Database host: ${dbConfig.host}`);
+});
