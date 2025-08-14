@@ -129,19 +129,12 @@ app.get('/certificates', async (req, res) => {
     res.status(500).render('certificates', { certificates: [], activeSection: 'certificates', error: 'Failed to load certificates.' });
   }
 });
-
-// Experiences
-app.get('/experiences/:experience', (req, res) => {
-    const experiencePage = req.params.experience;
-    const validExperiences = ['ukhsa', 'intuit', 'minor-weir-willis', 'optima-health'];
-    console.log(`Attempting to render: ${experiencePage}.ejs`);
-    if (validExperiences.includes(experiencePage)) {
-        res.render(experiencePage, { activeSection: 'experiences' });
-    } else {
-        res.status(404).render('404', { activeSection: '' });
-    }
-});
-app.get('/experience/siak-cars', (req, res) => res.render('siak-cars', { activeSection: 'experience' }));
+// Experience (static routes)
+app.get('/experiences/siak-cars', (req, res) => res.render('siak-cars', { activeSection: 'experience' }));
+app.get('/experiences/ukhsa', (req, res) => res.render('ukhsa', { activeSection: 'experience' }));
+app.get('/experiences/intuit', (req, res) => res.render('intuit', { activeSection: 'experience' }));
+app.get('/experiences/minor-weir-willis', (req, res) => res.render('minor-weir-willis', { activeSection: 'experience' }));
+app.get('/experiences/optima-health', (req, res) => res.render('optima-health', { activeSection: 'experience' }));
 // Expertise (static routes)
 app.get('/expertise/data-analyst', (req, res) => res.render('data-analyst', { activeSection: 'expertise' }));
 app.get('/expertise/data-engineer', (req, res) => res.render('data-engineer', { activeSection: 'expertise' }));
