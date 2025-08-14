@@ -7,24 +7,27 @@ body {
     padding: 0;
     background-color: #f8fafc;
     color: #1f2937;
-    font-size: 20px; /* Increased from 18px for all pages */
+    font-size: 20px; /* Base size for readability */
+    text-align: center; /* Center all content globally */
 }
 
 header {
     padding: 2rem;
-    text-align: center;
-    background-color: #1e293b;
+    background-color: #1e293b; /* Consistent navbar color */
     color: #fff;
 }
 
 h1, h2 {
     margin-bottom: 1rem;
-    font-size: 2.8rem; /* Increased from 2.5rem */
+    font-size: 2.8rem; /* Larger and consistent */
 }
 
 p {
-    font-size: 1.3rem; /* Increased from 1.2rem */
+    font-size: 1.3rem; /* Larger and consistent */
     margin-bottom: 1.5rem;
+    max-width: 800px; /* Center text with max width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 a {
@@ -40,7 +43,7 @@ a:hover {
    Navbar Styles
 =========================== */
 .main-header {
-    background-color: #1e293b;
+    background-color: #1e293b; /* Consistent navbar color */
     padding: 0;
 }
 
@@ -69,7 +72,7 @@ nav ul li a {
     display: flex;
     align-items: center;
     transition: color 0.3s ease;
-    font-size: 1.2rem; /* Slightly larger for readability */
+    font-size: 1.2rem; /* Larger for readability */
 }
 
 nav ul li a:hover {
@@ -82,7 +85,7 @@ nav ul li a:hover {
     position: absolute;
     top: 60px;
     left: 0;
-    background-color: #1e293b;
+    background-color: #1e293b; /* Consistent navbar color */
     border-radius: 5px;
     min-width: 220px;
     z-index: 10;
@@ -97,7 +100,7 @@ nav ul li a:hover {
     padding: 10px 15px;
     height: auto;
     color: #fff;
-    font-size: 1.1rem; /* Adjusted for dropdown */
+    font-size: 1.1rem; /* Larger for readability */
 }
 
 .dropdown-content li a:hover {
@@ -118,29 +121,29 @@ nav ul li.dropdown:hover > a {
 =========================== */
 .portfolio-layout {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 40px;
     padding: 40px;
     max-width: 1200px;
     margin: 0 auto;
+    flex-direction: column; /* Center on mobile by default */
 }
 
 .profile-left {
-    flex: 1;
     display: flex;
     justify-content: center;
 }
 
 .profile-img-large {
     width: 100%;
-    max-width: 400px; /* Bigger image as requested */
+    max-width: 400px; /* Bigger image */
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .profile-right {
-    flex: 2;
+    text-align: center;
 }
 
 .profile-desc {
@@ -155,14 +158,16 @@ nav ul li.dropdown:hover > a {
     font-weight: bold;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
     .portfolio-layout {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row; /* Switch to row on desktop */
     }
     .profile-right {
-        text-align: center;
+        text-align: left;
     }
+}
+
+@media (max-width: 768px) {
     .profile-img-large {
         max-width: 250px;
     }
@@ -193,7 +198,7 @@ nav ul li.dropdown:hover > a {
 }
 
 .experience-narrative p {
-    font-size: 1.3rem; /* Increased to match global */
+    font-size: 1.3rem; /* Consistent with global */
     color: #1f2937;
     line-height: 1.6;
     margin-bottom: 1.5rem;
@@ -205,7 +210,7 @@ nav ul li.dropdown:hover > a {
         margin: 0 10px 30px;
     }
     .experience-narrative p {
-        font-size: 1.1rem;
+        font-size: 1.1rem; /* Readable on mobile */
     }
 }
 
@@ -213,9 +218,8 @@ nav ul li.dropdown:hover > a {
    Certificates Page Styles
 =========================== */
 .page-title {
-    text-align: center;
+    font-size: 2.8rem; /* Consistent and larger */
     margin: 40px 0;
-    font-size: 2.8rem; /* Increased */
     color: #fff;
 }
 
@@ -250,12 +254,12 @@ nav ul li.dropdown:hover > a {
 .certificate-item p {
     padding: 10px;
     color: #bbb;
-    font-size: 1.3rem; /* Increased */
+    font-size: 1.3rem; /* Consistent and larger */
 }
 
 @media (max-width: 768px) {
     .certificate-item p {
-        font-size: 1.1rem;
+        font-size: 1.1rem; /* Readable on mobile */
     }
 }
 
@@ -269,8 +273,7 @@ nav ul li.dropdown:hover > a {
 }
 
 .content h1 {
-    font-size: 2.8rem; /* Increased */
-    text-align: center;
+    font-size: 2.8rem; /* Consistent and larger */
     margin-bottom: 30px;
     color: #1f2937;
 }
@@ -281,6 +284,7 @@ nav ul li.dropdown:hover > a {
     border-radius: 10px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
     margin-bottom: 30px;
+    text-align: left; /* Form left-aligned within centered container */
 }
 
 .form-group {
@@ -292,7 +296,7 @@ label {
     margin-bottom: 8px;
     font-weight: bold;
     color: #1f2937;
-    font-size: 1.3rem; /* Increased */
+    font-size: 1.3rem; /* Consistent and larger */
 }
 
 input[type="text"],
@@ -302,7 +306,7 @@ textarea {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 6px;
-    font-size: 1.3rem; /* Increased */
+    font-size: 1.3rem; /* Consistent and larger */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -321,7 +325,7 @@ textarea {
     display: inline-block;
     background: #1e293b;
     color: #fff;
-    font-size: 1.3rem; /* Increased */
+    font-size: 1.3rem; /* Consistent and larger */
     padding: 12px 20px;
     border: none;
     border-radius: 6px;
@@ -344,7 +348,7 @@ textarea {
 
 .contact-info p {
     margin: 8px 0;
-    font-size: 1.3rem; /* Increased */
+    font-size: 1.3rem; /* Consistent and larger */
 }
 
 .contact-info a {
@@ -385,17 +389,15 @@ textarea {
    Expertise Pages Styles
 =========================== */
 .content h1 {
-    font-size: 2.8rem; /* Increased */
-    text-align: center;
+    font-size: 2.8rem; /* Consistent and larger */
     margin-bottom: 20px;
     color: #1f2937;
 }
 
 .content p {
-    text-align: center;
+    font-size: 1.3rem; /* Consistent and larger */
     max-width: 700px;
     margin: 0 auto 30px;
-    font-size: 1.3rem; /* Increased */
     color: #1f2937;
 }
 
@@ -424,14 +426,14 @@ textarea {
 
 .card h2 a {
     text-decoration: none;
-    font-size: 1.5rem; /* Increased */
+    font-size: 1.5rem; /* Consistent and larger */
     color: #1f2937;
 }
 
 .card p {
     color: #555;
     margin-top: 10px;
-    font-size: 1.3rem; /* Increased */
+    font-size: 1.3rem; /* Consistent and larger */
 }
 
 .skills {
@@ -445,7 +447,7 @@ textarea {
     background: #f0f0f0;
     padding: 5px 10px;
     border-radius: 6px;
-    font-size: 1.1rem; /* Increased */
+    font-size: 1.1rem; /* Consistent and larger */
     color: #1f2937;
 }
 

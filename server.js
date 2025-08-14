@@ -130,11 +130,11 @@ app.get('/certificates', async (req, res) => {
   }
 });
 // Experience (static routes)
-app.get('/experiences/siak-cars', (req, res) => res.render('siak-cars', { activeSection: 'experience' }));
-app.get('/experiences/ukhsa', (req, res) => res.render('ukhsa', { activeSection: 'experience' }));
-app.get('/experiences/intuit', (req, res) => res.render('intuit', { activeSection: 'experience' }));
-app.get('/experiences/minor-weir-willis', (req, res) => res.render('minor-weir-willis', { activeSection: 'experience' }));
-app.get('/experiences/optima-health', (req, res) => res.render('optima-health', { activeSection: 'experience' }));
+app.get('/experiences/siak-cars', (req, res) => res.render('siak-cars', { activeSection: 'experiences' }));
+app.get('/experiences/ukhsa', (req, res) => res.render('ukhsa', { activeSection: 'experiences' }));
+app.get('/experiences/intuit', (req, res) => res.render('intuit', { activeSection: 'experiences' }));
+app.get('/experiences/minor-weir-willis', (req, res) => res.render('minor-weir-willis', { activeSection: 'experiences' }));
+app.get('/experiences/optima-health', (req, res) => res.render('optima-health', { activeSection: 'experiences' }));
 // Expertise (static routes)
 app.get('/expertise/data-analyst', (req, res) => res.render('data-analyst', { activeSection: 'expertise' }));
 app.get('/expertise/data-engineer', (req, res) => res.render('data-engineer', { activeSection: 'expertise' }));
