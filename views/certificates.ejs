@@ -1,28 +1,55 @@
+<!DOCTYPE html>
 <html lang="en">
-    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kambez Saidi - Certificates</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 <body>
 
-<%- include('partials/header', { title: 'Kambez Saidi - Certificates' }) %>
+<%- include('partials/header') %>
 
 <main class="container">
-    <section class="content">
-        <h1>My Certifications</h1>
-        
-        <div class="certificate-grid">
-            <% certificates.forEach(cert => { %>
-                <div class="certificate-item">
-                    <a href="<%= cert.image_url %>" class="certificate-link" target="_blank">
-                        <img src="<%= cert.image_url %>" alt="<%= cert.title %>">
-                        <div class="certificate-overlay">
-                            <h3><%= cert.title %></h3>
-                        </div>
-                    </a>
-                </div>
-            <% }); %>
+    <h1 class="page-title">Certificates</h1>
+
+    <div class="certificate-grid">
+        <div class="certificate-item">
+            <img src="/images/certificates/data-analysis.jpg" alt="Data Analysis" onclick="openModal(this)">
+            <p>Data Analysis</p>
         </div>
-    </section>
+        <div class="certificate-item">
+            <img src="/images/certificates/data-engineering.jpg" alt="Data Engineering" onclick="openModal(this)">
+            <p>Data Engineering</p>
+        </div>
+        <div class="certificate-item">
+            <img src="/images/certificates/python.jpg" alt="Python" onclick="openModal(this)">
+            <p>Python</p>
+        </div>
+        <div class="certificate-item">
+            <img src="/images/certificates/sql.jpg" alt="SQL" onclick="openModal(this)">
+            <p>SQL</p>
+        </div>
+    </div>
 </main>
 
+<!-- Modal -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
 <%- include('partials/footer') %>
+
+<script>
+function openModal(img) {
+    document.getElementById("modalImage").src = img.src;
+    document.getElementById("imageModal").style.display = "flex";
+}
+function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+}
+</script>
+
 </body>
 </html>

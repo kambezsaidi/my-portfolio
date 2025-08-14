@@ -1,22 +1,33 @@
-<%- include('/partials/header', { title: 'Kambez Saidi - Expertise' }) %>
+<html lang="en">
+<body>
+<%- include('partials/header', { title: 'Kambez Saidi - Data Engineering Expertise' }) %>
+
+<main class="container">
     <section class="content">
         <h1>Data Engineer</h1>
-        <p>Designed data pipelines in MySQL to feed PowerBI dashboards, reducing data processing time by 20%. Example: Non-contract spend analysis dashboard.</p>
+        <p>
+            Designed data pipelines in MySQL to feed PowerBI dashboards, reducing data processing time by 20%.
+            Example: Non-contract spend analysis dashboard.
+        </p>
+
         <div class="gallery">
-            <a href="/images/businessSummary.jpg" target="_blank">
-                <img src="/images/businessSummary.jpg" alt="Business Summary Dashboard">
+            <div class="gallery-item">
+                <a href="/images/businessSummary.jpg" target="_blank">
+                    <img src="/images/businessSummary.jpg" alt="Business Summary Dashboard">
+                </a>
                 <p>PowerBI dashboard summarizing business metrics from MySQL data.</p>
-            </a>
-            <a href="/images/non-contract-spend.jpg" target="_blank">
-                <img src="/images/non-contract-spend.jpg" alt="Non-Contract Spend">
+            </div>
+
+            <div class="gallery-item">
+                <a href="/images/non-contract-spend.jpg" target="_blank">
+                    <img src="/images/non-contract-spend.jpg" alt="Non-Contract Spend">
+                </a>
                 <p>Analysis of non-contract spending patterns.</p>
-            </a>
+            </div>
         </div>
     </section>
-    <footer>
-        <p>Email: youremail@example.com | GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
-    </footer>
-</body>
-</html>
+</main>
 
 <%- include('partials/footer') %>
+</body>
+</html>
