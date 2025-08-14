@@ -41,7 +41,7 @@ nav ul li a:hover {
     position: absolute;
     top: 60px; /* exactly below nav bar */
     left: 0;
-    background-color: #1e293b;
+    background-color: #1e293b; /* Add this to match navbar background */
     border-radius: 5px;
     min-width: 220px;
     z-index: 10;
@@ -55,20 +55,21 @@ nav ul li a:hover {
 .dropdown-content li a {
     padding: 10px 15px;
     height: auto;
+    color: #fff; /* Ensure white text is explicit */
 }
 
 .dropdown-content li a:hover {
-    background-color: #0f172a;
-    color: #38bdf8;
+    background-color: #0f172a; /* Darker shade for hover, already set correctly */
+    color: #38bdf8; /* Hover color, already set correctly */
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
-nav ul li.dropdown:hover > a {
-    color: #38bdf8;
-}
 
+nav ul li.dropdown:hover > a {
+    color: #38bdf8; /* Hover color for top-level, already set correctly */
+}
 /* Certificates Page */
 .page-title {
     text-align: center;
