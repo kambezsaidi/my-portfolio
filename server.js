@@ -113,17 +113,6 @@ app.get('/', async (req, res) => {
   }
 });
 
-// Projects page
-app.get('/projects', async (req, res) => {
-  try {
-    const [projects] = await dbPromise.query('SELECT * FROM projects');
-    res.render('projects', { projects: projects || [], activeSection: 'projects' });
-  } catch (err) {
-    console.error('Error fetching projects:', err.stack);
-    res.status(500).render('projects', { projects: [], activeSection: 'projects', error: 'Failed to load projects.' });
-  }
-});
-
 // Static pages
 app.get('/about', (req, res) => res.render('about', { activeSection: 'about' }));
 app.get('/expertise', (req, res) => res.render('expertise', { activeSection: 'expertise' }));
@@ -143,6 +132,7 @@ app.get('/certificates', async (req, res) => {
 
 // Expertise subpages
 app.get('/expertise/data-analyst', (req, res) => res.render('data-analyst', { activeSection: 'expertise' }));
+app.get('/expertise/data-engineer', (req, res) => res.render('data-engineer', { activeSection: 'expertise' }));
 app.get('/expertise/data-scientist', (req, res) => res.render('data-scientist', { activeSection: 'expertise' }));
 app.get('/expertise/software-developer', (req, res) => res.render('software-developer', { activeSection: 'expertise' }));
 
