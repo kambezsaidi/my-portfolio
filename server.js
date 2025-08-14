@@ -133,7 +133,7 @@ app.get('/certificates', async (req, res) => {
 // Experiences
 app.get('/experiences/:experience', (req, res) => {
     const experiencePage = req.params.experience;
-    const validExperiences = ['siak-cars', 'ukhsa', 'intuit', 'minor-weir-willis', 'optima-health'];
+    const validExperiences = ['ukhsa', 'intuit', 'minor-weir-willis', 'optima-health'];
     console.log(`Attempting to render: ${experiencePage}.ejs`);
     if (validExperiences.includes(experiencePage)) {
         res.render(experiencePage, { activeSection: 'experiences' });
@@ -141,7 +141,7 @@ app.get('/experiences/:experience', (req, res) => {
         res.status(404).render('404', { activeSection: '' });
     }
 });
-
+app.get('/experience/siak-cars', (req, res) => res.render('siak-cars', { activeSection: 'experience' }));
 // Expertise (static routes)
 app.get('/expertise/data-analyst', (req, res) => res.render('data-analyst', { activeSection: 'expertise' }));
 app.get('/expertise/data-engineer', (req, res) => res.render('data-engineer', { activeSection: 'expertise' }));
