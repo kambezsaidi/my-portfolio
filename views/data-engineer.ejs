@@ -1,33 +1,41 @@
 <html lang="en">
 <body>
-<%- include('partials/header', { title: 'Kambez Saidi - Data Engineering Expertise' }) %>
+    <%- include('partials/header', { title: 'Kambez Saidi - Data Engineer' }) %>
 
-<main class="container">
-    <section class="content">
-        <h1>Data Engineer</h1>
-        <p>
-            Designed data pipelines in MySQL to feed PowerBI dashboards, reducing data processing time by 20%.
-            Example: Non-contract spend analysis dashboard.
-        </p>
+    <div class="role-container">
+        <section>
+            <h1>Data Engineer</h1>
+            <h2>Job Description & Achievements</h2>
+            <ul class="role-list">
+                <li>Designed data pipelines in MySQL to feed PowerBI dashboards, reducing processing time by 20%.</li>
+                <li>Built an automated non-contract spend analysis dashboard, improving financial oversight.</li>
+                <li>Optimized ETL workflows for large datasets, improving refresh times.</li>
+                <li>Integrated multiple data sources into a unified reporting structure.</li>
+                <li>Worked closely with analysts to tailor dashboards to business needs.</li>
+            </ul>
 
-        <div class="gallery">
-            <div class="gallery-item">
+            <h2>Skills Learned</h2>
+            <ul class="role-list">
+                <li>Data pipeline design (ETL)</li>
+                <li>SQL and MySQL optimization</li>
+                <li>PowerBI dashboard creation</li>
+                <li>Data integration and cleansing</li>
+                <li>Performance tuning for large datasets</li>
+            </ul>
+
+            <div class="gallery">
                 <a href="/images/businessSummary.jpg" target="_blank">
                     <img src="/images/businessSummary.jpg" alt="Business Summary Dashboard">
+                    <p>Business summary dashboard in PowerBI.</p>
                 </a>
-                <p>PowerBI dashboard summarizing business metrics from MySQL data.</p>
-            </div>
-
-            <div class="gallery-item">
                 <a href="/images/non-contract-spend.jpg" target="_blank">
                     <img src="/images/non-contract-spend.jpg" alt="Non-Contract Spend">
+                    <p>Non-contract spending analysis.</p>
                 </a>
-                <p>Analysis of non-contract spending patterns.</p>
             </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </div>
 
-<%- include('partials/footer') %>
+    <%- include('partials/footer') %>
 </body>
 </html>

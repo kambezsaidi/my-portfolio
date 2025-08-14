@@ -18,7 +18,14 @@ app.set('view engine', 'ejs');
 // -------------------
 // 2. Environment Validation
 // -------------------
-const requiredEnv = ['MYSQL_HOST', 'MYSQL_USER', 'MYSQL_PASSWORD', 'MYSQL_DATABASE', 'EMAIL_USER', 'EMAIL_PASS'];
+const requiredEnv = [
+  'MYSQL_HOST',
+  'MYSQL_USER',
+  'MYSQL_PASSWORD',
+  'MYSQL_DATABASE',
+  'EMAIL_USER',
+  'EMAIL_PASS'
+];
 const missingEnv = requiredEnv.filter(env => !process.env[env]);
 if (missingEnv.length > 0) {
   console.error('❌ Missing environment variables:', missingEnv);
@@ -46,7 +53,7 @@ db.getConnection((err, connection) => {
   if (err) {
     console.error('❌ Error connecting to MySQL/RDS:', err.stack);
   } else {
-    // Create tables if they don't exist
+    // Create required tables if not exist
     connection.query(`
       CREATE TABLE IF NOT EXISTS contacts (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,11 +62,7 @@ db.getConnection((err, connection) => {
         message TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
-    `, (err) => {
-      if (err) console.error('❌ Error creating contacts table:', err.stack);
-      else console.log('✅ Contacts table checked/created');
-    });
-
+    `);
     connection.query(`
       CREATE TABLE IF NOT EXISTS projects (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -68,23 +71,15 @@ db.getConnection((err, connection) => {
         link VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
-    `, (err) => {
-      if (err) console.error('❌ Error creating projects table:', err.stack);
-      else console.log('✅ Projects table checked/created');
-    });
-
+    `);
     connection.query(`
       CREATE TABLE IF NOT EXISTS certificates (
         id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         image_url VARCHAR(255) NOT NULL
       )
-    `, (err) => {
-      if (err) console.error('❌ Error creating certificates table:', err.stack);
-      else console.log('✅ Certificates table checked/created');
-    });
-
-    console.log('✅ Connected to MySQL/RDS');
+    `);
+    console.log('✅ Connected to MySQL/RDS & checked/created tables');
     connection.release();
   }
 });
@@ -99,8 +94,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
   }
 });
-console.log('Transporter config:', transporter.options); // Debug email setup
-
 // -------------------
 // 5. Routes
 // -------------------
@@ -112,7 +105,11 @@ app.get('/', async (req, res) => {
     res.render('index', { projects: projects || [], activeSection: 'home' });
   } catch (err) {
     console.error('Error fetching projects:', err.stack);
-    res.status(500).render('index', { projects: [], activeSection: 'home', error: 'Failed to load projects. Please try again later.' });
+    res.status(500).render('index', {
+      projects: [],
+      activeSection: 'home',
+      error: 'Failed to load projects. Please try again later.'
+    });
   }
 });
 
@@ -123,7 +120,7 @@ app.get('/projects', async (req, res) => {
     res.render('projects', { projects: projects || [], activeSection: 'projects' });
   } catch (err) {
     console.error('Error fetching projects:', err.stack);
-    res.status(500).render('projects', { projects: [], activeSection: 'projects', error: 'Failed to load projects. Please try again later.' });
+    res.status(500).render('projects', { projects: [], activeSection: 'projects', error: 'Failed to load projects.' });
   }
 });
 
@@ -132,6 +129,8 @@ app.get('/about', (req, res) => res.render('about', { activeSection: 'about' }))
 app.get('/expertise', (req, res) => res.render('expertise', { activeSection: 'expertise' }));
 app.get('/experiences', (req, res) => res.render('experiences', { activeSection: 'experiences' }));
 app.get('/contact', (req, res) => res.render('contact', { activeSection: 'contact' }));
+
+// Certificates
 app.get('/certificates', async (req, res) => {
   try {
     const [certificates] = await dbPromise.query('SELECT * FROM certificates');
@@ -143,16 +142,16 @@ app.get('/certificates', async (req, res) => {
 });
 
 // Expertise subpages
-app.get('/expertise/data-engineering', (req, res) => res.render('data-engineering', { activeSection: 'expertise' }));
-app.get('/expertise/software-development', (req, res) => res.render('software-development', { activeSection: 'expertise' }));
-app.get('/expertise/business-analysis', (req, res) => res.render('business-analysis', { activeSection: 'expertise' }));
+app.get('/expertise/data-analyst', (req, res) => res.render('data-analyst', { activeSection: 'expertise' }));
+app.get('/expertise/data-scientist', (req, res) => res.render('data-scientist', { activeSection: 'expertise' }));
+app.get('/expertise/software-developer', (req, res) => res.render('software-developer', { activeSection: 'expertise' }));
 
 // Experiences subpages
 app.get('/experiences/:experience', (req, res) => {
   const experiencePage = req.params.experience;
   const validExperiences = ['siak-cars', 'ukhsa', 'intuit', 'minor-weir-willis', 'optima-health'];
   if (validExperiences.includes(experiencePage)) {
-    res.render(experiencePage, { activeSection: experiencePage });
+    res.render(experiencePage, { activeSection: 'experiences' });
   } else {
     res.status(404).render('404', { activeSection: '' });
   }
@@ -202,11 +201,17 @@ app.post(
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 app.use((req, res) => res.status(404).render('404', { activeSection: '' }));
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).render('500', { title: 'Server Error' });
+});
+
 // -------------------
 // 8. Server Start
 // -------------------
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT} at ${new Date().toLocaleString('en-GB', { timeZone: 'Europe/London' })}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`Database host: ${dbConfig.host}, Database: ${dbConfig.database}`);
 });

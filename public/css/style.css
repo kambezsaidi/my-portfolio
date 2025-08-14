@@ -68,3 +68,486 @@ nav ul li a:hover {
 nav ul li.dropdown:hover > a {
     color: #38bdf8;
 }
+
+/* Certificates Page */
+.page-title {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.certificate-item {
+    background: #1f1f1f;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.certificate-item:hover {
+    transform: scale(1.05);
+}
+
+.certificate-item img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #444;
+}
+
+.certificate-item p {
+    padding: 10px;
+    color: #bbb;
+    font-size: 1rem;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* ===== Contact Page Styles ===== */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.content h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Form Styles */
+#contact-form {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #0077b6;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 119, 182, 0.3);
+}
+
+textarea {
+    resize: none;
+}
+
+.submit-btn {
+    display: inline-block;
+    background: #0077b6;
+    color: #fff;
+    font-size: 1rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #023e8a;
+    transform: scale(1.03);
+}
+
+/* Contact Info Styles */
+.contact-info {
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contact-info p {
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+.contact-info a {
+    color: #0077b6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+/* ===== Expertise Pages ===== */
+.content h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.content p {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* Gallery Grid */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 0 15px;
+}
+
+.gallery-item {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery p {
+    padding: 12px;
+    font-size: 0.95rem;
+    color: #444;
+}
+/* Expertise Overview Page */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 0 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.card h2 a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.4rem;
+}
+
+.card p {
+    color: #555;
+    margin: 10px 0 15px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skills span {
+    background: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+/* Expertise Page Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.card h2 a {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.card p {
+    color: #555;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+/* Portfolio layout */
+.portfolio-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.profile-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-img-large {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-right {
+    flex: 2;
+}
+
+.profile-desc {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .portfolio-layout {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-right {
+        text-align: center;
+    }
+}
+
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-img {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+.job-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px;
+}
+
+.job-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.role-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.role-list li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* ===========================
+   Base Styles (Global)
+=========================== */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8fafc;
+    color: #1f2937;
+}
+
+header {
+    padding: 2rem;
+    text-align: center;
+}
+
+h1, h2 {
+    margin-bottom: 1rem;
+}
+
+.role-list li {
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===========================
+   Data Analyst Page Theme
+=========================== */
+body.data-analyst {
+    background-color: #f4fafd;
+    color: #1f2937;
+}
+body.data-analyst header {
+    background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+    color: white;
+}
+body.data-analyst h1,
+body.data-analyst h2 {
+    color: #0369a1;
+}
+body.data-analyst .role-list li {
+    background: #e0f2fe;
+    border-left: 4px solid #0284c7;
+}
+body.data-analyst a {
+    color: #0284c7;
+}
+
+/* ===========================
+   Data Scientist Page Theme
+=========================== */
+body.data-scientist {
+    background-color: #faf5ff;
+    color: #2e1065;
+}
+body.data-scientist header {
+    background: linear-gradient(90deg, #7c3aed, #a78bfa);
+    color: white;
+}
+body.data-scientist h1,
+body.data-scientist h2 {
+    color: #5b21b6;
+}
+body.data-scientist .role-list li {
+    background: #ede9fe;
+    border-left: 4px solid #7c3aed;
+}
+body.data-scientist a {
+    color: #6d28d9;
+}
+
+/* ===========================
+   Software Developer Page Theme
+=========================== */
+body.software-developer {
+    background-color: #f0fdf4;
+    color: #064e3b;
+}
+body.software-developer header {
+    background: linear-gradient(90deg, #10b981, #34d399);
+    color: white;
+}
+body.software-developer h1,
+body.software-developer h2 {
+    color: #047857;
+}
+body.software-developer .role-list li {
+    background: #d1fae5;
+    border-left: 4px solid #10b981;
+}
+body.software-developer a {
+    color: #059669;
+}

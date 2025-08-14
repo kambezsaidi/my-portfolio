@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kambez Saidi - Sales & Business Analytics Specialist at SIAK Cars</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+<html lang="eng">
+
 <body>
-    <%- include('partials/header') %>
+    <%- include('partials/header', { title: 'Sales and Business Analyst at SIAK Cars' }) %>
     <header>
-        <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">
         <h1>Kambez Saidi</h1>
-        <p class="profile-desc">A confident, versatile, and fast-learning professional with a disciplined approach, specializing in data science, software engineering, and scientific research across diverse industries.</p>
         <p class="role-title">Sales & Business Analytics Specialist at SIAK Cars</p>
     </header>
     <div class="role-container">
@@ -55,9 +46,8 @@
             </ul>
         </section>
     </div>
-    <footer>
-        <p>&copy; 2025 Kambez Saidi. <a href="https://github.com/kambezsaidi">GitHub</a> | <a href="https://www.linkedin.com/in/kambez-saidi">LinkedIn</a></p>
-    </footer>
+
     <script src="/js/script.js" defer></script>
+<%- include('partials/footer') %>
 </body>
 </html>
