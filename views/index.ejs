@@ -1,36 +1,45 @@
-<%- include('partials/header', { title: 'Kambez Saidi - Home' }) %>
+<%- include('partials/header', { title: 'Kambez Saidi - Portfolio' }) %>
 
-    <main class="container">
-        <section class="profile-header">
-            <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">
-            <h1>Kambez Saidi</h1>
-            <p class="profile-desc">A confident, versatile, and fast-learning professional with a disciplined approach, specializing in data science, software engineering, and scientific research across diverse industries.</p>
-            <p class="role-title">Data Engineer | Software Developer | Business Analyst</p>
-        </section>
+<main class="container">
+    <section class="profile-header">
+        <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">
+        <h1>Kambez Saidi</h1>
+        <p class="tagline">Data Engineer | Software Developer | Business Analyst</p>
+        <p class="website">kambezsaidi.com</p>
+        
+        <div class="navigation-links">
+            <a href="/experiences">Resume</a>
+            <a href="/expertise">Expertise</a>
+            <a href="/certificates">Certificates</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </section>
 
-        <section class="content">
-            <h2>Recent Projects</h2>
-            <div class="gallery">
-                <a href="/images/businessSummary.jpg" target="_blank">
-                    <img src="/images/businessSummary.jpg" alt="Business Summary Dashboard">
-                    <p>Business Summary Dashboard</p>
-                </a>
-                <a href="/images/forecast-and-top-managers.jpg" target="_blank">
-                    <img src="/images/forecast-and-top-managers.jpg" alt="Forecast Analysis">
-                    <p>Forecast and Manager Analysis</p>
-                </a>
-                <a href="/images/non-contract-spend.jpg" target="_blank">
-                    <img src="/images/non-contract-spend.jpg" alt="Non-Contract Spend">
-                    <p>Non-Contract Spend Analysis</p>
-                </a>
-            </div>
-        </section>
-    </main>
+    <hr class="divider">
 
-    <footer>
-        <p>&copy; 2025 Kambez Saidi. <a href="https://github.com/kambezsaidi">GitHub</a> | <a href="https://www.linkedin.com/in/kambez-saidi">LinkedIn</a></p>
-    </footer>
+    <section class="about-section">
+        <h2>A Bit About Me</h2>
+        <p>I am a versatile professional with experience across data engineering, software development, and scientific research. My work focuses on building data pipelines, developing analytical tools, and creating efficient systems that bridge technical and business needs.</p>
+    </section>
 
-    <script src="/js/script.js"></script>
-</body>
-</html>
+    <hr class="divider">
+
+    <section class="quick-links">
+        <div class="link-item">
+            <span class="link-label">Email</span>
+            <a href="mailto:kambez.saidi@outlook.com">kambez.saidi@outlook.com</a>
+        </div>
+        
+        <div class="link-item">
+            <span class="link-label">GitHub</span>
+            <a href="https://github.com/kambezsaidi" target="_blank" rel="noopener noreferrer">github.com/kambezsaidi</a>
+        </div>
+        
+        <div class="link-item">
+            <span class="link-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/kambez-saidi" target="_blank" rel="noopener noreferrer">linkedin.com/in/kambez-saidi</a>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
