@@ -1,30 +1,40 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kambez Saidi - Software Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
 <body>
-    <%- include('partials/header') %>
-    <section class="content">
-        <h1>Software Developer</h1>
-        <p>Built this portfolio site using Node.js for backend, EJS for templating, MySQL for data storage, Visual Studio Code as IDE, GitHub for version control, and Heroku for deployment. Challenges overcome: Integrating MySQL with PowerBI exports for dynamic content.</p>
-        <div class="gallery">
-            <a href="/images/software-developer.jpg" target="_blank">
-                <img src="/images/software-developer.jpg" alt="Software Development Workflow">
-                <p>Workflow of developing this portfolio site.</p>
-            </a>
-            <a href="/images/sql.jpg" target="_blank">
-                <img src="/images/sql.jpg" alt="SQL Example">
-                <p>Example of SQL queries used in the project.</p>
-            </a>
-        </div>
-    </section>
-    <footer>
-        <p>Email: youremail@example.com | GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
-    </footer>
+    <%- include('partials/header', { title: 'Kambez Saidi - Software Developer at Intuit' }) %>
+
+    <div class="role-container">
+        <section>
+            <h1>Software Developer at Intuit</h1>
+            <h2>Job Description & Achievements</h2>
+            <ul class="role-list">
+                <li>Designed React microfrontends for TurboTax, improving load times by 20%.</li>
+                <li>Integrated React Query, reducing API call latency by 30%.</li>
+                <li>Implemented Playwright automation, cutting regression bugs by 30%.</li>
+                <li>Replaced Cypress with Playwright in CI/CD, reducing test time by 40%.</li>
+                <li>Developed an AI-driven tax assistant with Next.js, praised at Global Engineering Days.</li>
+                <li>Mentored junior developers, enhancing team code quality.</li>
+                <li>Led agile ceremonies, improving sprint efficiency by 15%.</li>
+                <li>Optimized front-end performance, boosting user satisfaction scores.</li>
+                <li>Collaborated with backend teams, integrating 10+ APIs seamlessly.</li>
+                <li>Wrote Jest unit tests, achieving 90% code coverage.</li>
+            </ul>
+
+            <h2>Skills Learned</h2>
+            <ul class="role-list">
+                <li>React & Next.js development</li>
+                <li>Microfrontend architecture</li>
+                <li>Playwright UI test automation</li>
+                <li>CI/CD pipeline management</li>
+                <li>API integration</li>
+                <li>Agile methodologies</li>
+                <li>Performance optimization</li>
+                <li>Unit testing with Jest</li>
+                <li>AI integration (OpenAI GPT)</li>
+            </ul>
+        </section>
+    </div>
+
+    <%- include('partials/footer') %>
 </body>
 </html>
+a

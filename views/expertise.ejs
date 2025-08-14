@@ -1,32 +1,29 @@
-<%- include('partials/header', { title: 'Kambez Saidi - Portfolio' }) %>
-
+<html lang="en">
 <body>
-    <%- include('partials/header') %>
+    <%- include('partials/header', { title: 'Kambez Saidi - Expertise' }) %>
+
     <section class="content">
         <h1>Expertise Areas</h1>
         <div class="card-grid">
             <div class="card">
-                <a href="/data-engineer">Data Engineer</a>
-                <p>Building robust data pipelines and infrastructure.</p>
+                <h2><a href="/expertise/data-engineer">Data Engineer</a></h2>
+                <p>Building robust data pipelines and infrastructure with SQL, Python, and PowerBI.</p>
             </div>
             <div class="card">
-                <a href="/data-analyst">Data Analyst</a>
-                <p>Extracting insights from complex datasets.</p>
+                <h2><a href="/expertise/data-analyst">Data Analyst</a></h2>
+                <p>Extracting insights from complex datasets to drive decision-making.</p>
             </div>
             <div class="card">
-                <a href="/data-scientist">Data Scientist</a>
-                <p>Applying ML models for predictive analytics.</p>
+                <h2><a href="/expertise/data-scientist">Data Scientist</a></h2>
+                <p>Applying machine learning models for predictive analytics.</p>
             </div>
             <div class="card">
-                <a href="/software-developer">Software Developer</a>
-                <p>Developing full-stack applications.</p>
+                <h2><a href="/expertise/software-developer">Software Developer</a></h2>
+                <p>Developing full-stack applications using modern frameworks.</p>
             </div>
         </div>
     </section>
-    <footer>
-        <p>Email: youremail@example.com | GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
-    </footer>
+    
+    <%- include('partials/footer') %>
 </body>
 </html>
-
-<%- include('partials/footer') %>

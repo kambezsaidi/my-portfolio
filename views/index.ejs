@@ -1,45 +1,45 @@
+<html lang="en">
+<body>
 <%- include('partials/header', { title: 'Kambez Saidi - Portfolio' }) %>
 
-<main class="container">
-    <section class="profile-header">
-        <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img">
+<div class="main-container portfolio-layout">
+    <div class="profile-left">
+        <img src="/images/kambez.jpg" alt="Kambez Saidi" class="profile-img-large">
+    </div>
+    <div class="profile-right">
         <h1>Kambez Saidi</h1>
-        <p class="tagline">Data Engineer | Software Developer | Business Analyst</p>
-        <p class="website">kambezsaidi.com</p>
-        
-        <div class="navigation-links">
-            <a href="/experiences">Resume</a>
-            <a href="/expertise">Expertise</a>
-            <a href="/certificates">Certificates</a>
-            <a href="/contact">Contact</a>
-        </div>
-    </section>
-
-    <hr class="divider">
-
-    <section class="about-section">
+        <p class="profile-desc">
+            A confident, versatile, and fast-learning professional with a disciplined approach,
+            specializing in data science, software engineering, and scientific research across diverse industries.
+        </p>
         <h2>A Bit About Me</h2>
-        <p>I am a versatile professional with experience across data engineering, software development, and scientific research. My work focuses on building data pipelines, developing analytical tools, and creating efficient systems that bridge technical and business needs.</p>
-    </section>
+        <p>
+            I am a professional with experience in various domains, including data analysis,
+            software development, and scientific research. My skills include Python, SQL, React, and more.
+        </p>
 
-    <hr class="divider">
-
-    <section class="quick-links">
-        <div class="link-item">
-            <span class="link-label">Email</span>
-            <a href="mailto:kambez.saidi@outlook.com">kambez.saidi@outlook.com</a>
+        <h2>Expertise Areas</h2>
+        <div class="card-grid">
+            <div class="card">
+                <a href="/expertise/data-engineer">Data Engineer</a>
+                <p>Building robust data pipelines and infrastructure.</p>
+            </div>
+            <div class="card">
+                <a href="/expertise/data-analyst">Data Analyst</a>
+                <p>Extracting insights from complex datasets.</p>
+            </div>
+            <div class="card">
+                <a href="/expertise/data-scientist">Data Scientist</a>
+                <p>Applying ML models for predictive analytics.</p>
+            </div>
+            <div class="card">
+                <a href="/expertise/software-developer">Software Developer</a>
+                <p>Developing full-stack applications.</p>
+            </div>
         </div>
-        
-        <div class="link-item">
-            <span class="link-label">GitHub</span>
-            <a href="https://github.com/kambezsaidi" target="_blank" rel="noopener noreferrer">github.com/kambezsaidi</a>
-        </div>
-        
-        <div class="link-item">
-            <span class="link-label">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/kambez-saidi" target="_blank" rel="noopener noreferrer">linkedin.com/in/kambez-saidi</a>
-        </div>
-    </section>
-</main>
+    </div>
+</div>
 
 <%- include('partials/footer') %>
+</body>
+</html>
