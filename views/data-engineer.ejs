@@ -1,14 +1,15 @@
 <html lang="en">
-<body>
-    <%- include('partials/header', { title: 'Kambez Saidi - Data Engineer' }) %>
-<header>
-        <h1>Kambez Saidi - Expertise</h1>
-</header>
 <body class="data-engineer">
+    <%- include('partials/header', { title: 'Kambez Saidi - Data Engineer' }) %>
+
+    <header>
+        <h1>Kambez Saidi - Expertise</h1>
+    </header>
 
     <div class="container">
         <section>
             <h1>Data Engineer</h1>
+
             <h2>Job Description & Achievements</h2>
             <ul class="role-list">
                 <li>Designed data pipelines in MySQL to feed PowerBI dashboards, reducing processing time by 20%.</li>
@@ -27,17 +28,28 @@
                 <li>Performance tuning for large datasets</li>
             </ul>
 
-            <div class="gallery">
-                <a href="/images/businessSummary.jpg" target="_blank">
-                    <img src="/images/businessSummary.jpg" alt="Business Summary Dashboard">
+            <!-- Gallery -->
+            <div class="gallery-grid">
+                <div class="gallery-grid-item">
+                    <img src="/images/forecast-and-top-managers.jpg" alt="Forecast and Top Managers" onclick="openModal(this)">
+                    <p>Forecast and Top Managers.</p>
+                </div>
+                <div class="gallery-grid-item">
+                    <img src="/images/businessSummary.jpg" alt="Business Summary Dashboard" onclick="openModal(this)">
                     <p>Business summary dashboard in PowerBI.</p>
-                </a>
-                <a href="/images/non-contract-spend.jpg" target="_blank">
-                    <img src="/images/non-contract-spend.jpg" alt="Non-Contract Spend">
+                </div>
+                <div class="gallery-grid-item">
+                    <img src="/images/non-contract spend.jpg" alt="Non-Contract Spend" onclick="openModal(this)">
                     <p>Non-contract spending analysis.</p>
-                </a>
+                </div>
             </div>
         </section>
+    </div>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
     <%- include('partials/footer') %>
