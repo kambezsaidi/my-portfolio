@@ -212,7 +212,7 @@ header p {
 
 @media (min-width: 769px) {
     .portfolio-layout {
-        flex-direction: column; /* Switch to row on desktop */
+        flex-direction: row; /* Switch to row on desktop */
     }
     .profile-right {
         text-align: left;
@@ -229,6 +229,44 @@ header p {
     .role-title {
         font-size: 1.2rem;
     }
+}
+
+/* Expertise card grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card a {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #1f2937;
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #4b5563;
 }
 
 /* ===========================
