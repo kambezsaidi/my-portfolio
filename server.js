@@ -83,45 +83,6 @@ db.getConnection((err, connection) => {
     connection.release();
   }
 });
-//mobile dropdown functionality
-// This script handles the dropdown functionality for mobile devices//
-
-document.addEventListener('DOMContentLoaded', function() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-    const isMobile = window.innerWidth <= 768;
-
-    dropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('> a');
-        
-        link.addEventListener('click', function(e) {
-            if (isMobile) {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-                
-                // Close other dropdowns
-                dropdowns.forEach(otherDropdown => {
-                    if (otherDropdown !== dropdown) {
-                        otherDropdown.classList.remove('active');
-                    }
-                });
-            }
-        });
-    });
-    
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
-        if (isMobile && !e.target.closest('.dropdown')) {
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        }
-    });
-
-    // Update on window resize
-    window.addEventListener('resize', function() {
-        isMobile = window.innerWidth <= 768;
-    });
-});
 
 // -------------------
 // 4. Email Transporter
