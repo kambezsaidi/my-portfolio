@@ -1,16 +1,20 @@
+document.getElementById('burger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('active');
+});
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile dropdown functionality
     const dropdowns = document.querySelectorAll('.dropdown');
-    
+    const isMobile = window.innerWidth <= 768;
+
     dropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('a');
+        const link = dropdown.querySelector('> a');
         
         link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
+            if (isMobile) {
                 e.preventDefault();
                 dropdown.classList.toggle('active');
                 
-                // Close other open dropdowns
+                // Close other dropdowns
                 dropdowns.forEach(otherDropdown => {
                     if (otherDropdown !== dropdown) {
                         otherDropdown.classList.remove('active');
@@ -19,13 +23,3 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.dropdown') && window.innerWidth <= 768) {
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        }
-    });
-});
