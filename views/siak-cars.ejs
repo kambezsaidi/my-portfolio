@@ -1,13 +1,16 @@
-<%- include('partials/header', { title: 'Sales and Business Analyst at SIAK Cars' }) %>
-<body>    
+<html lang="en">
+    <body>
+<%- include('partials/header', { title: 'Kambez Saidi - Sales and Business Analyst' }) %>
+    
     <header>
         <h1>Kambez Saidi</h1>
-        <p class="role-title">Sales & Business Analytics Specialist at SIAK Cars</p>
     </header>
+
     <div class="role-container">
         <section>
+            <h1>Sales and Business Analyst</h1>
             <h2>Job Description & Achievements</h2>
-            <ul>
+            <ul class="role-list">
                 <li>Built Python ETL pipelines to automate sales reporting, reducing manual processing by 50%.</li>
                 <li>Developed Power BI dashboards to track KPIs and sales trends, improving decision-making speed.</li>
                 <li>Optimized MySQL queries, accelerating data retrieval by 30%.</li>
@@ -25,7 +28,7 @@
                 <li>Documented ETL processes, enabling seamless onboarding of new analysts.</li>
             </ul>
             <h2>Skills Learned</h2>
-            <ul>
+            <ul class="role-list">
                 <li>Python programming for ETL processes</li>
                 <li>SQL query optimization</li>
                 <li>Power BI dashboard development</li>
@@ -45,7 +48,6 @@
         </section>
     </div>
 
-    <script src="/js/script.js" defer></script>
-<%- include('partials/footer') %>
+    <%- include('partials/footer') %>
 </body>
 </html>

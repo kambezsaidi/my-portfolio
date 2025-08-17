@@ -83,6 +83,45 @@ db.getConnection((err, connection) => {
     connection.release();
   }
 });
+//mobile dropdown functionality
+// This script handles the dropdown functionality for mobile devices//
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    const isMobile = window.innerWidth <= 768;
+
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('> a');
+        
+        link.addEventListener('click', function(e) {
+            if (isMobile) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+                
+                // Close other dropdowns
+                dropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('active');
+                    }
+                });
+            }
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (isMobile && !e.target.closest('.dropdown')) {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
+    });
+
+    // Update on window resize
+    window.addEventListener('resize', function() {
+        isMobile = window.innerWidth <= 768;
+    });
+});
 
 // -------------------
 // 4. Email Transporter
@@ -130,11 +169,12 @@ app.get('/certificates', async (req, res) => {
   }
 });
 // Experience (static routes)
-app.get('/experiences/siak-cars', (req, res) => res.render('siak-cars', { activeSection: 'experiences' }));
-app.get('/experiences/ukhsa', (req, res) => res.render('ukhsa', { activeSection: 'experiences' }));
-app.get('/experiences/intuit', (req, res) => res.render('intuit', { activeSection: 'experiences' }));
-app.get('/experiences/minor-weir-willis', (req, res) => res.render('minor-weir-willis', { activeSection: 'experiences' }));
-app.get('/experiences/optima-health', (req, res) => res.render('optima-health', { activeSection: 'experiences' }));
+app.get('/experiences/siak-cars', (req, res) => { res.render('siak-cars', { activeSection: 'siak-cars' }); }); 
+app.get('/experiences/ukhsa', (req, res) => { res.render('ukhsa', { activeSection: 'ukhsa' }); });
+app.get('/experiences/intuit', (req, res) => { res.render('intuit', { activeSection: 'intuit' }); }); 
+app.get('/experiences/optima-health', (req, res) => { res.render('optima-health', { activeSection: 'optima-health' }); }); 
+app.get('/experiences/minor-weir-willis', (req, res) => { res.render('minor-weir-willis', { activeSection: 'minor-weir-willis' }); });
+
 // Expertise (static routes)
 app.get('/expertise/data-analyst', (req, res) => res.render('data-analyst', { activeSection: 'expertise' }));
 app.get('/expertise/data-engineer', (req, res) => res.render('data-engineer', { activeSection: 'expertise' }));
