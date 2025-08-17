@@ -19,21 +19,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// =======================
-// Modal for Data Engineer Images
-// =======================
+// Image Modal Functionality
 function openModal(img) {
     const modal = document.getElementById("imageModal");
     const modalImg = document.getElementById("modalImage");
-    if (modal && modalImg) {
-        modal.style.display = "block";
-        modalImg.src = img.src;
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+    
+    // Close modal when clicking outside image
+    modal.onclick = function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
     }
 }
 
 function closeModal() {
-    const modal = document.getElementById("imageModal");
-    if (modal) {
-        modal.style.display = "none";
-    }
+    document.getElementById("imageModal").style.display = "none";
 }
+
+// Close modal with ESC key
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") {
+        closeModal();
+    }
+});

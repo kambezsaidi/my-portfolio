@@ -1,15 +1,7 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kambez Saidi - Certificates</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
 
-<%- include('partials/header') %>
-
+<body class="certificates">
+<%- include('partials/header', { title: 'Kambez Saidi - Certificates' }) %>
 <Header>
     <h1>Kambez Saidi Certificates</h1>
 </Header>
@@ -20,7 +12,7 @@
     <div class="certificate-grid">
                 <div class="certificate-item">
             <img src="/images/certificates/software-developer.jpg" alt="Software Developer" onclick="openModal(this)">
-            <p>Data Analysis</p>
+            <p>Software Developer</p>
         </div>
         <div class="certificate-item">
             <img src="/images/certificates/data-analysis.jpg" alt="Data Analysis" onclick="openModal(this)">
@@ -42,22 +34,16 @@
 </main>
 
 <!-- Modal -->
-<div id="imageModal" class="modal" onclick="closeModal()">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-container">
+        <img class="modal-content" id="modalImage">
+        <div id="caption" class="modal-caption"></div>
+    </div>
 </div>
 
 <%- include('partials/footer') %>
 
-<script>
-function openModal(img) {
-    document.getElementById("modalImage").src = img.src;
-    document.getElementById("imageModal").style.display = "flex";
-}
-function closeModal() {
-    document.getElementById("imageModal").style.display = "none";
-}
-</script>
 <script src="/js/script.js"></script>
 </body>
 </html>
