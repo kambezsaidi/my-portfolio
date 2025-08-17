@@ -212,7 +212,7 @@ header p {
 
 @media (min-width: 769px) {
     .portfolio-layout {
-        flex-direction: row; /* Switch to row on desktop */
+        flex-direction: column; /* Switch to row on desktop */
     }
     .profile-right {
         text-align: left;
