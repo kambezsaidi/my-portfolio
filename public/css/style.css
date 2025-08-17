@@ -118,56 +118,67 @@ nav ul li.dropdown:hover > a {
     color: #38bdf8;
 }
 
-/* ===== Mobile Navbar Styles ===== */
-@media (max-width: 768px) {
-  /* Make nav items stack vertically */
-  #nav-links {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  
-  /* Style all nav items */
-  #nav-links li {
-    width: 100%;
-    text-align: center;
-    padding: 0;
-    border-bottom: 1px solid #334155; /* subtle separator */
-  }
-  
-  #nav-links li a {
-    display: block;
-    padding: 15px;
-    font-size: 1.2rem;
-  }
-  
-  /* Hide the mobile toggle button since we're showing all items */
-  #mobile-menu-toggle {
-    display: none;
-  }
-  
-  /* Dropdown styles */
-  .dropdown-content {
-    display: none;
-    width: 100%;
-    background-color: #0f172a;
-  }
-  
-  .dropdown.active .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown > a::after {
-    content: " ▾";
-  }
-  
-  .dropdown.active > a::after {
-    content: " ▴";
-  }
-}
 /* ===========================
+   Navbar Styles - Mobile
+=========================== */
+@media (max-width: 768px) {
+    /* Stack all nav items vertically */
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        gap: 0;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        height: auto;
+        border-bottom: 1px solid #334155;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 15px;
+        height: auto;
+        justify-content: center;
+    }
+
+    /* Dropdown styles for mobile */
+    .dropdown-content {
+        display: none;
+        position: static;
+        width: 100%;
+        background-color: #0f172a;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .dropdown-content li {
+        border-bottom: none;
+    }
+
+    .dropdown-content li a {
+        padding-left: 30px; /* Indent dropdown items */
+        background-color: #0f172a;
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+
+    /* Arrow indicators for dropdowns */
+    .dropdown > a::after {
+        content: " ▾";
+    }
+    
+    .dropdown.active > a::after {
+        content: " ▴";
+    }
+}/* ===========================
    Home Page Styles
 =========================== */
 .portfolio-layout {
