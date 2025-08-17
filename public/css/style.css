@@ -183,7 +183,7 @@ header p {
     min-height: 300px;
 }
 
-.profile-img-large {
+.profile-large {
     width: 100%;
     max-width: 300px; /* Bigger image */
     height: 300px;;
@@ -276,7 +276,7 @@ header p {
 .page-title {
     font-size: 2.8rem; /* Consistent and larger */
     margin: 40px 0;
-    color: #fff;
+    color: #000000;
 }
 
 .certificate-grid {
@@ -507,6 +507,18 @@ textarea {
     color: #1f2937;
 }
 
+.card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ddd; /* Lighter than certificates */
+    border-radius: 8px 8px 0 0; /* Rounded top corners only */
+    margin-bottom: 15px;
+}
+
+.card:hover img {
+    transform: scale(1.02); /* Subtle zoom effect */
+    transition: transform 0.3s ease;
+}
 @media (max-width: 768px) {
     .content h1 {
         font-size: 2.2rem;
