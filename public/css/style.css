@@ -127,6 +127,7 @@ header p {
         color: white;
         cursor: pointer;
         z-index: 100;
+        padding: 10px; /* Improve tap target */
     }
 
     nav ul {
@@ -139,8 +140,9 @@ header p {
         background-color: #1e293b;
         flex-direction: column;
         justify-content: center;
+        align-items: center; /* Center items */
         z-index: 99;
-        padding-top: 60px; /* Space for burger button */
+        padding: 60px 0 20px; /* Space for burger button and bottom padding */
     }
 
     nav ul.active {
@@ -158,6 +160,7 @@ header p {
         justify-content: center;
         padding: 12px 15px;
         height: auto;
+        font-size: 1.1rem; /* Slightly smaller for mobile */
     }
 
     .dropdown > a::after {
@@ -181,6 +184,10 @@ header p {
 
     .dropdown.active .dropdown-content {
         display: block; /* Show when active */
+    }
+
+    .dropdown-content a {
+        font-size: 1rem; /* Consistent with mobile nav */
     }
 }
 
@@ -282,6 +289,7 @@ header p {
     padding: 20px;
     text-align: center;
     transition: transform 0.2s ease;
+    box-sizing: border-box; /* Prevent padding issues */
 }
 
 .card:hover {
@@ -309,11 +317,13 @@ header p {
         padding: 10px;
         width: 100%; /* Ensure it fits within viewport */
         max-width: 100%; /* Prevent overflow */
+        margin: 0 auto;
     }
 
     .card {
         padding: 15px;
         width: 100%; /* Ensure card fits container */
+        max-width: 100%; /* Prevent overflow */
         box-sizing: border-box; /* Prevent padding issues */
     }
 
