@@ -268,6 +268,25 @@ header p {
     font-size: 1rem;
     color: #4b5563;
 }
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: 1fr; /* stack vertically */
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card a {
+        font-size: 1.1rem;
+    }
+
+    .card p {
+        font-size: 0.95rem;
+    }
+}
 
 /* ===========================
    Experience Page Styles
