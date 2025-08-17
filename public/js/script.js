@@ -1,16 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const mobileToggle = document.getElementById('mobile-menu-toggle');
-  const navLinks = document.getElementById('nav-links');
   const dropdowns = document.querySelectorAll('.dropdown');
-  const burgerIcon = document.querySelector('.burger-icon');
-  const closeIcon = document.querySelector('.close-icon');
-
-  // Mobile menu toggle
-  mobileToggle.addEventListener('click', function() {
-    navLinks.classList.toggle('active');
-    burgerIcon.style.display = navLinks.classList.contains('active') ? 'none' : 'block';
-    closeIcon.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
-  });
 
   // Dropdown functionality for mobile
   dropdowns.forEach(dropdown => {
@@ -27,16 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
     });
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('nav') && window.innerWidth <= 768) {
-      navLinks.classList.remove('active');
-      burgerIcon.style.display = 'block';
-      closeIcon.style.display = 'none';
-      dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-    }
   });
 });
 // =======================
