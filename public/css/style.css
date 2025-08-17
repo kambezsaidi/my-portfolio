@@ -118,77 +118,68 @@ nav ul li.dropdown:hover > a {
     color: #38bdf8;
 }
 
-/* === MOBILE NAVIGATION === */
-.menu-toggle {
+/* ===== Mobile Navbar Styles ===== */
+@media (max-width: 768px) {
+  /* Hide regular nav by default */
+  #nav-links {
     display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Show nav when active */
+  #nav-links.active {
+    display: flex;
+  }
+  
+  /* Style all nav items */
+  #nav-links li {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+  
+  #nav-links li a {
+    display: block;
+    padding: 15px;
+    font-size: 1.2rem;
+  }
+  
+  /* Mobile menu toggle button */
+  #mobile-menu-toggle {
+    display: block;
     background: none;
     border: none;
-    cursor: pointer;
-    padding: 10px;
+    color: white;
+    font-size: 1.5rem;
+    padding: 15px;
     position: absolute;
-    left: 10px;
-    top: 10px;
-    z-index: 20;
-}
-
-.menu-toggle .bar {
+    top: 0;
+    right: 0;
+    z-index: 100;
+  }
+  
+  /* Dropdown styles */
+  .dropdown-content {
+    display: none;
+    width: 100%;
+    background-color: #0f172a;
+  }
+  
+  .dropdown.active .dropdown-content {
     display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #fff;
-    margin: 5px 0;
-    transition: all 0.3s ease;
+  }
+  
+  .dropdown > a::after {
+    content: " ▾";
+  }
+  
+  .dropdown.active > a::after {
+    content: " ▴";
+  }
 }
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background-color: #1e293b;
-        padding: 0;
-    }
-
-    nav ul.active {
-        display: flex;
-    }
-
-    nav ul li {
-        height: auto;
-        width: 100%;
-        text-align: center;
-    }
-
-    nav ul li a {
-        height: 50px;
-        width: 100%;
-        justify-content: center;
-        font-size: 1.1rem;
-    }
-
-    .dropdown-content {
-        position: static;
-        width: 100%;
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: none;
-    }
-
-    .dropdown.active .dropdown-content {
-        display: block;
-    }
-}
-
 /* ===========================
    Home Page Styles
 =========================== */

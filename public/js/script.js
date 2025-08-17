@@ -1,60 +1,44 @@
-// =======================
-// Mobile Menu Toggle
-// =======================
-document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.getElementById('burger');
-    const navLinks = document.querySelector('nav ul');
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  const dropdowns = document.querySelectorAll('.dropdown');
+  const burgerIcon = document.querySelector('.burger-icon');
+  const closeIcon = document.querySelector('.close-icon');
 
-    if (burger && navLinks) {
-        burger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            // Toggle burger icon between ☰ and ✕
-            burger.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-            // Close all dropdowns when toggling the menu
-            const dropdowns = document.querySelectorAll('.dropdown');
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
+  // Mobile menu toggle
+  mobileToggle.addEventListener('click', function() {
+    navLinks.classList.toggle('active');
+    burgerIcon.style.display = navLinks.classList.contains('active') ? 'none' : 'block';
+    closeIcon.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
+  });
+
+  // Dropdown functionality for mobile
+  dropdowns.forEach(dropdown => {
+    const link = dropdown.querySelector('> a');
+    
+    link.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) { // Only on mobile
+        e.preventDefault();
+        dropdown.classList.toggle('active');
+        
+        // Close other dropdowns
+        dropdowns.forEach(other => {
+          if (other !== dropdown) other.classList.remove('active');
         });
-    } else {
-        console.error('Burger or navLinks not found in the DOM');
-    }
-});
-
-// =======================
-// Dropdown Functionality
-// =======================
-function setupDropdowns() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-    const isMobile = window.innerWidth <= 768;
-
-    dropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('.dropdown-toggle');
-
-        // Remove any existing listeners by cloning the node
-        const newLink = link.cloneNode(true);
-        link.parentNode.replaceChild(newLink, link);
-
-        if (isMobile) {
-            newLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Close other dropdowns
-                dropdowns.forEach(other => {
-                    if (other !== dropdown) {
-                        other.classList.remove('active');
-                    }
-                });
-                // Toggle current dropdown
-                dropdown.classList.toggle('active');
-            });
-        }
+      }
     });
-}
+  });
 
-// Run on page load and resize
-document.addEventListener('DOMContentLoaded', setupDropdowns);
-window.addEventListener('resize', setupDropdowns);
-
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('nav') && window.innerWidth <= 768) {
+      navLinks.classList.remove('active');
+      burgerIcon.style.display = 'block';
+      closeIcon.style.display = 'none';
+      dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+    }
+  });
+});
 // =======================
 // Modal for Data Engineer Images
 // =======================
