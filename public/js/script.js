@@ -4,29 +4,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdowns = document.querySelectorAll(".dropdown");
 
   // Burger toggle
-  burger?.addEventListener("click", () => {
-    nav?.classList.toggle("active");
-    burger?.classList.toggle("active");
+  burger.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    burger.classList.toggle("active");
   });
 
-  // Close menu after clicking a sub-link
-  document.querySelectorAll("#navLinks a").forEach(a => {
-    a.addEventListener("click", () => {
-      if (window.innerWidth <= 768 && !a.parentElement.classList.contains("dropdown")) {
-        nav?.classList.remove("active");
-        burger?.classList.remove("active");
-      }
-    });
-  });
-
-  // Mobile dropdowns (accordion, two-tap fix)
+  // Mobile dropdowns (two-tap system)
   dropdowns.forEach(dropdown => {
     const link = dropdown.querySelector("> a");
-    if (!link) return;
-
+    
     link.addEventListener("click", function (e) {
       if (window.innerWidth <= 768) {
-        // Check if the dropdown is already active
+        // Check if dropdown is already active
         const isActive = dropdown.classList.contains("active");
         
         // Close all other dropdowns
@@ -43,7 +32,35 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  // Close menu when clicking on non-dropdown links
+  document.querySelectorAll("#navLinks a").forEach(a => {
+    a.addEventListener("click", () => {
+      if (window.innerWidth <= 768 && !a.parentElement.parentElement.classList.contains("dropdown-content")) {
+        // Close the menu if it's not a dropdown item
+        nav.classList.remove("active");
+        burger.classList.remove("active");
+        
+        // Close all dropdowns
+        dropdowns.forEach(dropdown => {
+          dropdown.classList.remove("active");
+        });
+      }
+    });
+  });
+
+  // Close dropdowns when clicking outside (on mobile)
+  document.addEventListener("click", function(e) {
+    if (window.innerWidth <= 768 && 
+        nav.classList.contains("active") &&
+        !e.target.closest("#navLinks")) {
+      dropdowns.forEach(dropdown => {
+        dropdown.classList.remove("active");
+      });
+    }
+  });
 });
+
 // Image Modal Functionality
 function openModal(img) {
     const modal = document.getElementById("imageModal");

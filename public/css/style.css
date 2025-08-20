@@ -163,19 +163,52 @@ nav li.dropdown:hover > a {
 
 /* Mobile (<=768px) */
 @media (max-width: 768px) {
-  /* Show burger and reorder: burger left, logo next, then nav */
-  .burger { 
-    display: flex; 
-    order: 1; 
-  }
-  .logo   { 
-    order: 2; 
-  }
-  nav     { 
-    order: 3; 
+  /* Header container */
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
   }
 
-  /* Collapse nav under header, hidden by default */
+  /* Logo on the left */
+  .logo {
+    order: 1;
+    margin-right: auto;
+  }
+
+  /* Burger on the right */
+  .burger {
+    display: flex;
+    order: 3;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+  }
+
+  .burger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+
+  /* Animate burger to X */
+  .burger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .burger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .burger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* Nav positioning */
   nav {
     display: none;
     position: absolute;
@@ -185,10 +218,11 @@ nav li.dropdown:hover > a {
     background: #1e293b;
     padding: 8px 0;
     text-align: left;
+    z-index: 1000;
   }
   
   nav.active {
-    display: block;         /* JS toggles this */
+    display: block;
   }
 
   nav ul {
@@ -202,7 +236,6 @@ nav li.dropdown:hover > a {
   }
   
   /* Mobile dropdown styles */
-  /* Hide dropdowns by default */
   .dropdown-content {
     display: none;
     position: static;
@@ -210,10 +243,8 @@ nav li.dropdown:hover > a {
     background-color: #0f172a;
     padding: 0;
     margin: 0;
-    list-style: none;
   }
 
-  /* Show when active */
   .dropdown.active .dropdown-content {
     display: block;
   }
@@ -221,18 +252,24 @@ nav li.dropdown:hover > a {
   /* Arrow indicators */
   .dropdown > a::after {
     content: " ▾";
+    float: right;
   }
   
   .dropdown.active > a::after {
     content: " ▴";
+    float: right;
   }
 
   /* Disable hover open on mobile */
   .dropdown:hover .dropdown-content {
     display: none;
   }
+  
+  /* Indent dropdown items */
+  .dropdown-content a {
+    padding-left: 32px !important;
+  }
 }
-
 /* ===========================
    Home Page Styles
 =========================== */
