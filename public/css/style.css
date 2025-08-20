@@ -209,8 +209,15 @@ nav li.dropdown:hover > a {
   .dropdown.active .dropdown-content {
   display: block;
   }
-
-  .dropdown-content li a {
+.dropdown-content li a { 
+    padding-left: 30px; 
+    background-color: #0f172a; 
+} 
+.dropdown.active .dropdown-content { 
+    display: block; 
+}
+  
+  .dropdown-content a {
   display: block;
   padding: 14px 18px;
   background-color: #0f172a;
@@ -218,10 +225,10 @@ nav li.dropdown:hover > a {
   }
 
   /* Arrow indicators */
-  .dropdown > li a::after {
+  .dropdown > a::after {
   content: " ▾";
   }
-  .dropdown.active > li a::after {
+  .dropdown.active > a::after {
   content: " ▴";
   }
   /* Disable desktop hover on mobile */
