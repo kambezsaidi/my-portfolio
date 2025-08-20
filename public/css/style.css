@@ -194,43 +194,34 @@ nav li.dropdown:hover > a {
     line-height: 1.2;
     padding: 14px 18px;
   }
-
-/* Dropdown hidden by default */
-.dropdown-content {
-  display: none;
-  position: static;
-  width: 100%;
-  background-color: #0f172a;
-  box-shadow: none;
-  border-radius: 0;
-  padding: 0;
-  margin: 0;
-  list-style: none;
 }
+/* Mobile dropdown styles */
+@media (max-width: 768px) {
+  /* Hide dropdowns by default */
+  .dropdown-content {
+    display: none;
+    position: static;
+    width: 100%;
+    background-color: #0f172a;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
 
-/* Show when active */
-.dropdown.active .dropdown-content {
-  display: block;
-}
+  /* Show when active */
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
 
-.dropdown-content {
-  display: none;
-  position: static;
-  width: 100%;
-  background-color: #0f172a;
-}
-
-.dropdown.active .dropdown-content {
-  display: block;
-}
   /* Arrow indicators */
   .dropdown > a::after {
-  content: " ▾";
+    content: " ▾";
   }
   .dropdown.active > a::after {
-  content: " ▴";
+    content: " ▴";
   }
-  /* Disable desktop hover on mobile */
+
+  /* Disable hover open on mobile */
   .dropdown:hover .dropdown-content {
     display: none;
   }

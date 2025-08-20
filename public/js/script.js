@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdowns = document.querySelectorAll(".dropdown");
 
   dropdowns.forEach(dropdown => {
-    const link = dropdown.querySelector("> a");
+    const link = dropdown.querySelector(":scope > a"); // FIXED selector
     if (!link) return;
 
     link.addEventListener("click", function (e) {
@@ -34,14 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
             if (other !== dropdown) other.classList.remove("active");
           });
         } else {
-          // second tap → follow link (don’t preventDefault)
+          // second tap → allow navigation
           dropdown.classList.remove("active");
         }
       }
     });
   });
 });
-
 
 // Image Modal Functionality
 function openModal(img) {
