@@ -18,12 +18,29 @@ document.querySelectorAll('#navLinks a').forEach(a => {
   });
 });
 
-// Mobile dropdowns (accordion behaviour, two-tap fix)
 document.addEventListener("DOMContentLoaded", function () {
-  const dropdowns = document.querySelectorAll(".dropdown");
-  const nav = document.getElementById("navLinks");
   const burger = document.getElementById("burger");
+  const nav = document.getElementById("navLinks");
+  const dropdowns = document.querySelectorAll(".dropdown");
 
+  // Burger toggle
+  burger?.addEventListener("click", () => {
+    nav?.classList.toggle("active");
+    burger?.classList.toggle("active");
+  });
+
+  // Close menu after clicking a sub-link
+  document.querySelectorAll("#navLinks a").forEach(a => {
+    a.addEventListener("click", () => {
+      if (window.innerWidth <= 768 && !a.closest(".dropdown")) {
+        // only close if it’s NOT a dropdown parent
+        nav?.classList.remove("active");
+        burger?.classList.remove("active");
+      }
+    });
+  });
+
+  // Mobile dropdowns (accordion, two-tap fix)
   dropdowns.forEach(dropdown => {
     const link = dropdown.querySelector("> a");
     if (!link) return;
@@ -31,26 +48,22 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", function (e) {
       if (window.innerWidth <= 768) {
         if (!dropdown.classList.contains("active")) {
-          // stop link navigation on first tap
-          e.preventDefault();
+          e.preventDefault(); // stop navigation first tap
           dropdown.classList.add("active");
 
-          // close all other dropdowns
+          // close others
           dropdowns.forEach(other => {
             if (other !== dropdown) other.classList.remove("active");
           });
-
-          // 🔒 force burger/nav to stay open
-          nav.classList.add("active");
-          burger.classList.add("active");
         } else {
-          // second tap → follow link (don’t preventDefault)
+          // second tap → follow link
           dropdown.classList.remove("active");
         }
       }
     });
   });
 });
+
 
 // Image Modal Functionality
 function openModal(img) {
