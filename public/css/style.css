@@ -40,149 +40,187 @@ a:hover {
 }
 
 /* ===========================
-   Navbar Styles
+   Navbar Styles (CLEAN)
 =========================== */
 .main-header {
-    background-color: #1e293b;
-    padding: 0;
-    position: relative; /* For positioning toggle */
+  background: #1e293b;
+  padding: 0;               /* override the generic header padding */
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 150px;             /* fixed, tidy header height */
+  padding: 0 16px;
+  position: relative;       /* needed for absolute mobile nav */
+}
+.logo {
+  display: flex;
+  align-items: center; /* vertically centers the img inside */
+  height: 100%;        /* take full height of header */
+}
+/* Logo */
+.logo img {
+  position: relative;
+  top: 0px;
+  height: 40px;             /* make the logo smaller */
+  width: auto;
+  display: block;
+  margin: 0; 
+  padding: 0;
+}
+
+/* Desktop nav (default) */
+nav {
+  display: block;
 }
 
 nav ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    height: 60px;
-    list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-nav ul li {
-    position: relative;
-    height: 60px;
-    display: flex;
-    align-items: center;
+nav li {
+  position: relative;
 }
 
-nav ul li a {
-    color: #fff;
-    font-weight: bold;
-    padding: 0 15px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    transition: color 0.3s ease;
-    font-size: 1.2rem;
+nav a {
+  color: #fff;
+  font-weight: 600;
+  padding: 0 12px;
+  line-height: 64px;        /* vertically center in the header */
+  display: block;
+  transition: color 0.2s ease;
+  font-size: 1.05rem;
 }
 
-nav ul li a:hover {
-    color: #38bdf8;
+nav a:hover {
+  color: #38bdf8;
 }
 
-/* === IMPROVED DROPDOWN STYLES === */
+/* Desktop dropdown */
 .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    background-color: #1e293b;
-    border-radius: 5px;
-    min-width: 220px;
-    z-index: 10;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    padding: 5px 0; /* Top/bottom padding only */
-    width: 100%; /* Ensure full width */
+  display: none;
+  position: absolute;
+  top: 100%;                /* sit directly under the parent link */
+  left: 0;
+  background: #1e293b;
+  min-width: 240px;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  overflow: hidden;
+  z-index: 10;
 }
 
 .dropdown-content a {
-    display: block;
-    padding: 10px 15px;
-    color: #fff;
-    font-size: 1.1rem;
-    background-color: #1e293b;
-    transition: all 0.3s ease;
-    width: 100%; /* Force full width */
-    box-sizing: border-box; /* Include padding in width */
+  line-height: 1.2;
+  padding: 12px 14px;
 }
 
-.dropdown-content a:hover {
-    background-color: #0f172a;
-    color: #38bdf8;
-}
-
-/* Keep existing dropdown behavior */
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;           /* hover opens on desktop */
 }
 
-nav ul li.dropdown:hover > a {
-    background-color: #0f172a;
-    color: #38bdf8;
+nav li.dropdown:hover > a {
+  color: #38bdf8;
+}
+
+/* Burger (hidden on desktop) */
+.burger {
+  width: 30px;
+  height: 22px;
+  display: none;            /* only visible on mobile */
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+/* Animate burger to X */
+.burger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+.burger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 /* ===========================
-   Navbar Styles - Mobile
+   Mobile (<=768px)
 =========================== */
 @media (max-width: 768px) {
+  /* Show burger and reorder: burger left, logo next, then nav */
+  .burger { display: flex; order: 1; }
+  .logo   { order: 2; }
+  nav     { order: 3; }
 
-    nav ul {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        padding: 0;
-        margin: 0;
-        gap: 0;
-    }
+  /* Collapse nav under header, hidden by default */
+  nav {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: #1e293b;
+    padding: 8px 0;
+    text-align: left;
+  }
+  nav.active {
+    display: block;         /* JS toggles this */
+  }
 
-    nav ul li {
-        width: 100%;
-        text-align: center;
-        height: auto;
-        border-bottom: 1px solid #334155;
-    }
+  nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
 
-    nav ul li a {
-        display: block;
-        padding: 15px;
-        height: auto;
-        justify-content: center;
-    }
+  nav a {
+    line-height: 1.2;
+    padding: 14px 18px;
+  }
 
-    /* Dropdown styles for mobile */
-    .dropdown-content {
-        display: none;
-        position: static;
-        width: 100%;
-        background-color: #0f172a;
-        box-shadow: none;
-        border-radius: 0;
-        padding: 0;
-    }
+  /* Mobile dropdowns behave like an accordion (click to open) */
+  .dropdown-content {
+    position: static;
+    display: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
 
-    .dropdown-content li {
-        border-bottom: none;
-    }
+  /* Caret indicator on mobile */
+  .dropdown > a::after {
+    content: " ▾";
+  }
+  .dropdown.active > a::after {
+    content: " ▴";
+  }
 
-    .dropdown-content li a {
-        padding-left: 30px; 
-        background-color: #0f172a;
-    }
+  /* Disable desktop hover open on touch */
+  .dropdown:hover .dropdown-content {
+    display: none;
+  }
+}
 
-    .dropdown.active .dropdown-content {
-        display: block;
-    }
-
-    /* Arrow indicators for dropdowns */
-    .dropdown > a::after {
-        content: " ▾";
-    }
-    
-    .dropdown.active > a::after {
-        content: " ▴";
-    }
-}/* ===========================
+/* ===========================
    Home Page Styles
 =========================== */
 .portfolio-layout {
@@ -224,6 +262,12 @@ nav ul li.dropdown:hover > a {
     color: #1f2937;
     font-weight: bold;
 }
+.logo img {
+    height: 50px;
+    width: auto;
+    position: block;
+}
+
 
 @media (min-width: 769px) {
     .portfolio-layout {
@@ -697,6 +741,95 @@ textarea {
 
 .close:hover {
     color: #38bdf8;
+}
+/* Header container */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Make logo image large (at least photo size) */
+.logo img {
+    height: 180px;
+    width: auto;
+    display: block;
+}
+
+/* Burger container */
+.burger {
+    width: 30px;
+    height: 22px;
+    display: none; /* hidden on desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1001; /* stay on top */
+}
+
+/* Lines */
+.burger span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Active (turn into X) */
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+    .burger {
+        display: flex;
+    }
+    .logo img {
+        height: 120px;
+    }
+}
+
+/* Nav visible by default on desktop */
+nav {
+    display: block;
+    position: static;
+    background: none;
+    width: auto;
+    text-align: left;
+    padding: 0;
+}
+
+/* Nav hidden by default on mobile, shown when active */
+@media (max-width: 768px) {
+    nav {
+        display: none;
+        position: absolute;
+        top: 70px; /* below header */
+        right: 0;
+        background: #1e293b;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+    nav.active {
+        display: block;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
 /* Mobile Modal Styles */
