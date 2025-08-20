@@ -14,7 +14,7 @@ document.querySelectorAll('#navLinks a').forEach(a => {
   });
 });
 
-// Mobile dropdowns (accordion)
+// Mobile dropdowns (accordion behaviour)
 document.addEventListener('DOMContentLoaded', function () {
   const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -24,17 +24,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     link.addEventListener('click', function (e) {
       if (window.innerWidth <= 768) {
-        e.preventDefault();
-        dropdown.classList.toggle('active');
+        if (!dropdown.classList.contains('active')) {
+          // First tap: open dropdown, block navigation
+          e.preventDefault();
+          dropdown.classList.add('active');
 
-        // Close others
-        dropdowns.forEach(other => {
-          if (other !== dropdown) other.classList.remove('active');
-        });
+          // Close others
+          dropdowns.forEach(other => {
+            if (other !== dropdown) other.classList.remove('active');
+          });
+        } else {
+          // Second tap: allow normal navigation
+          dropdown.classList.remove('active');
+          // don’t preventDefault here → will follow link
+        }
       }
     });
   });
 });
+
 
 // Image Modal Functionality
 function openModal(img) {
