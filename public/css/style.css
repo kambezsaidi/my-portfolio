@@ -195,8 +195,8 @@ nav li.dropdown:hover > a {
     padding: 14px 18px;
   }
 
-/* Mobile dropdowns behave like an accordion (click to open) */
-  .dropdown-content {
+/* Dropdown hidden by default */
+.dropdown-content {
   display: none;
   position: static;
   width: 100%;
@@ -204,19 +204,24 @@ nav li.dropdown:hover > a {
   box-shadow: none;
   border-radius: 0;
   padding: 0;
-  }
-
-  .dropdown.active .dropdown-content {
-  display: block;
-  }
-.dropdown-content li a { 
-    padding-left: 30px; 
-    background-color: #0f172a; 
-} 
-.dropdown.active .dropdown-content { 
-    display: block; 
+  margin: 0;
+  list-style: none;
 }
-  
+
+/* Show when active */
+.dropdown.active .dropdown-content {
+  display: block;
+}
+
+/* Dropdown links */
+.dropdown-content li a {
+  display: block;
+  padding: 14px 18px;
+  padding-left: 30px;
+  background-color: #0f172a;
+  text-align: left;
+}
+
   .dropdown-content a {
   display: block;
   padding: 14px 18px;
