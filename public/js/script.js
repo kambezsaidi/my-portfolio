@@ -21,9 +21,11 @@ document.querySelectorAll('#navLinks a').forEach(a => {
 // Mobile dropdowns (accordion behaviour, two-tap fix)
 document.addEventListener("DOMContentLoaded", function () {
   const dropdowns = document.querySelectorAll(".dropdown");
+  const nav = document.getElementById("navLinks");
+  const burger = document.getElementById("burger");
 
   dropdowns.forEach(dropdown => {
-    const link = dropdown.querySelector(":scope > a"); // FIXED selector
+    const link = dropdown.querySelector("> a");
     if (!link) return;
 
     link.addEventListener("click", function (e) {
@@ -37,8 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
           dropdowns.forEach(other => {
             if (other !== dropdown) other.classList.remove("active");
           });
+
+          // 🔒 force burger/nav to stay open
+          nav.classList.add("active");
+          burger.classList.add("active");
         } else {
-          // second tap → allow navigation
+          // second tap → follow link (don’t preventDefault)
           dropdown.classList.remove("active");
         }
       }
