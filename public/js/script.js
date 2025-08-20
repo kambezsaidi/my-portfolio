@@ -14,29 +14,28 @@ document.querySelectorAll('#navLinks a').forEach(a => {
   });
 });
 
-// Mobile dropdowns (accordion behaviour)
-document.addEventListener('DOMContentLoaded', function () {
-  const dropdowns = document.querySelectorAll('.dropdown');
+// Mobile dropdowns (accordion behaviour, two-tap fix)
+document.addEventListener("DOMContentLoaded", function () {
+  const dropdowns = document.querySelectorAll(".dropdown");
 
   dropdowns.forEach(dropdown => {
-    const link = dropdown.querySelector('> a');
+    const link = dropdown.querySelector("> a");
     if (!link) return;
 
-    link.addEventListener('click', function (e) {
+    link.addEventListener("click", function (e) {
       if (window.innerWidth <= 768) {
-        if (!dropdown.classList.contains('active')) {
-          // First tap: open dropdown, block navigation
+        if (!dropdown.classList.contains("active")) {
+          // stop link navigation on first tap
           e.preventDefault();
-          dropdown.classList.add('active');
+          dropdown.classList.add("active");
 
-          // Close others
+          // close all other dropdowns
           dropdowns.forEach(other => {
-            if (other !== dropdown) other.classList.remove('active');
+            if (other !== dropdown) other.classList.remove("active");
           });
         } else {
-          // Second tap: allow normal navigation
-          dropdown.classList.remove('active');
-          // don’t preventDefault here → will follow link
+          // second tap → follow link (don’t preventDefault)
+          dropdown.classList.remove("active");
         }
       }
     });

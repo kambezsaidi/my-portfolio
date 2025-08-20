@@ -213,22 +213,16 @@ nav li.dropdown:hover > a {
   display: block;
 }
 
-/* Dropdown links */
-.dropdown-content li a {
-  display: block;
-  padding: 14px 18px;
-  padding-left: 30px;
+.dropdown-content {
+  display: none;
+  position: static;
+  width: 100%;
   background-color: #0f172a;
-  text-align: left;
 }
 
-  .dropdown-content a {
+.dropdown.active .dropdown-content {
   display: block;
-  padding: 14px 18px;
-  background-color: #0f172a;
-  text-align: left;
-  }
-
+}
   /* Arrow indicators */
   .dropdown > a::after {
   content: " ▾";
