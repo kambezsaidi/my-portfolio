@@ -4,12 +4,16 @@ document.getElementById('burger')?.addEventListener('click', () => {
   document.getElementById('burger')?.classList.toggle('active');
 });
 
-// Close menu after clicking any link (mobile quality-of-life)
+// Close menu after clicking a real link (not dropdown parents)
 document.querySelectorAll('#navLinks a').forEach(a => {
-  a.addEventListener('click', () => {
+  a.addEventListener('click', (e) => {
     if (window.innerWidth <= 768) {
-      document.getElementById('navLinks')?.classList.remove('active');
-      document.getElementById('burger')?.classList.remove('active');
+      const parentLi = a.parentElement;
+      // Only close if it's NOT a dropdown toggle
+      if (!parentLi.classList.contains('dropdown')) {
+        document.getElementById('navLinks')?.classList.remove('active');
+        document.getElementById('burger')?.classList.remove('active');
+      }
     }
   });
 });
