@@ -1,25 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const burger = document.getElementById('burger');
-  const nav = document.getElementById('navLinks');
-  const dropdowns = document.querySelectorAll('.dropdown');
+  const burger = document.getElementById("burger");
+  const nav = document.getElementById("navLinks");
+  const dropdowns = document.querySelectorAll(".dropdown");
 
-  // Burger toggle - unified version
-  burger?.addEventListener('click', () => {
-    nav?.classList.toggle('active');
-    burger?.classList.toggle('active');
+  // Burger toggle
+  burger?.addEventListener("click", () => {
+    nav?.classList.toggle("active");
+    burger?.classList.toggle("active");
   });
 
-  // Close menu after clicking a real link (not dropdown parents)
-  document.querySelectorAll('#navLinks a').forEach(a => {
-    a.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        const parentLi = a.parentElement;
-        
-        // Only close if it's NOT a dropdown toggle
-        if (!parentLi.classList.contains('dropdown')) {
-          nav?.classList.remove('active');
-          burger?.classList.remove('active');
-        }
+  // Close menu after clicking a sub-link
+  document.querySelectorAll("#navLinks a").forEach(a => {
+    a.addEventListener("click", () => {
+      if (window.innerWidth <= 768 && !a.parentElement.classList.contains("dropdown")) {
+        nav?.classList.remove("active");
+        burger?.classList.remove("active");
       }
     });
   });
@@ -31,26 +26,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     link.addEventListener("click", function (e) {
       if (window.innerWidth <= 768) {
-        // Check if dropdown is already active
-        if (!dropdown.classList.contains("active")) {
-          // First tap - open dropdown and prevent navigation
+        // Check if the dropdown is already active
+        const isActive = dropdown.classList.contains("active");
+        
+        // Close all other dropdowns
+        dropdowns.forEach(other => {
+          if (other !== dropdown) other.classList.remove("active");
+        });
+        
+        // If not active, prevent navigation and open dropdown
+        if (!isActive) {
           e.preventDefault();
           dropdown.classList.add("active");
-          
-          // Close other dropdowns
-          dropdowns.forEach(other => {
-            if (other !== dropdown) other.classList.remove("active");
-          });
-        } else {
-          // Second tap - allow navigation (don't prevent default)
-          dropdown.classList.remove("active");
-          // The link will naturally navigate now
         }
+        // If already active, allow default navigation (no preventDefault)
       }
     });
   });
 });
-
 // Image Modal Functionality
 function openModal(img) {
     const modal = document.getElementById("imageModal");
