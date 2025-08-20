@@ -195,27 +195,39 @@ nav li.dropdown:hover > a {
     padding: 14px 18px;
   }
 
-  /* Mobile dropdowns behave like an accordion (click to open) */
-  .dropdown-content {
-    position: static;
+/* Dropdown styles for mobile */
+.dropdown-content {
     display: none;
+    position: static;          /* stack inline */
+    width: 100%;
+    background-color: #0f172a; /* same as menu */
     box-shadow: none;
     border-radius: 0;
+    padding: 0;
   }
-  .dropdown.active .dropdown-content {
+.dropdown-content li {
+    border-bottom: none;
+  }
+.dropdown-content li a {
+    padding-left: 30px;        /* indent submenu */
+    background-color: #0f172a;
+  }
+
+  /* Open dropdown when active */
+.dropdown.active .dropdown-content {
     display: block;
   }
 
   /* Caret indicator on mobile */
-  .dropdown > a::after {
+.dropdown > a::after {
     content: " ▾";
   }
-  .dropdown.active > a::after {
+.dropdown.active > a::after {
     content: " ▴";
   }
 
-  /* Disable desktop hover open on touch */
-  .dropdown:hover .dropdown-content {
+/* Disable desktop hover on mobile */
+.dropdown:hover .dropdown-content {
     display: none;
   }
 }
