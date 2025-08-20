@@ -201,38 +201,19 @@ nav li.dropdown:hover > a {
     padding: 14px 18px;
   }
   
-  /* Mobile dropdown styles */
-  /* Hide dropdowns by default */
-  .dropdown-content {
-    display: none;
-    position: static;
-    width: 100%;
-    background-color: #0f172a;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  /* Show when active */
-  .dropdown.active .dropdown-content {
-    display: block;
-  }
-
-  /* Arrow indicators */
-  .dropdown > a::after {
-    content: " ▾";
-  }
-  
-  .dropdown.active > a::after {
-    content: " ▴";
-  }
-
-  /* Disable hover open on mobile */
-  .dropdown:hover .dropdown-content {
-    display: none;
-  }
+/* Mobile dropdown styles - always expanded */
+.dropdown-content {
+  display: block !important;   /* always visible on mobile */
+  position: static;
+  width: 100%;
+  background-color: #0f172a;
+  padding-left: 16px; /* indent to show hierarchy */
 }
 
+.dropdown > a::after {
+  content: ""; /* no arrows on mobile */
+}
+}
 /* ===========================
    Home Page Styles
 =========================== */

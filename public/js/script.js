@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const burger = document.getElementById("burger");
   const nav = document.getElementById("navLinks");
-  const dropdowns = document.querySelectorAll(".dropdown");
 
   // Burger toggle
   burger.addEventListener("click", () => {
@@ -9,55 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
     burger.classList.toggle("active");
   });
 
-  // Mobile dropdowns (two-tap system)
-  dropdowns.forEach(dropdown => {
-    const link = dropdown.querySelector("> a");
-    
-    link.addEventListener("click", function (e) {
-      if (window.innerWidth <= 768) {
-        // Check if dropdown is already active
-        const isActive = dropdown.classList.contains("active");
-        
-        // Close all other dropdowns
-        dropdowns.forEach(other => {
-          if (other !== dropdown) other.classList.remove("active");
-        });
-        
-        // If not active, prevent navigation and open dropdown
-        if (!isActive) {
-          e.preventDefault();
-          dropdown.classList.add("active");
-        }
-        // If already active, allow default navigation (no preventDefault)
-      }
-    });
-  });
-
-  // Close menu when clicking on non-dropdown links
+  // Close menu when clicking any link
   document.querySelectorAll("#navLinks a").forEach(a => {
     a.addEventListener("click", () => {
-      if (window.innerWidth <= 768 && !a.parentElement.parentElement.classList.contains("dropdown-content")) {
-        // Close the menu if it's not a dropdown item
+      if (window.innerWidth <= 768) {
         nav.classList.remove("active");
         burger.classList.remove("active");
-        
-        // Close all dropdowns
-        dropdowns.forEach(dropdown => {
-          dropdown.classList.remove("active");
-        });
       }
     });
-  });
-
-  // Close dropdowns when clicking outside (on mobile)
-  document.addEventListener("click", function(e) {
-    if (window.innerWidth <= 768 && 
-        nav.classList.contains("active") &&
-        !e.target.closest("#navLinks")) {
-      dropdowns.forEach(dropdown => {
-        dropdown.classList.remove("active");
-      });
-    }
   });
 });
 
